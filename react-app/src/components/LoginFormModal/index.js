@@ -17,13 +17,28 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login('demo@aa.io', 'password'));
+    if (data) {
+      setErrors(data);
+    } else {
+      closeModal()
+    }
+  }
+
   return (
-    <>
+    <>  
+
       <h1>Log In</h1>
+      <form onSubmit={demoUser}>
+        <button type="submit">Log in as Demo</button>
+      </form>
+
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (

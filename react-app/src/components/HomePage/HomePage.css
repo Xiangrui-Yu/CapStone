@@ -1,0 +1,29 @@
+.Navigation-holder{
+  flex:0.3;
+  margin-top: 20px;
+  padding-left: 20px;
+  padding-right:20px;
+  justify-content: space-around;
+  border-right:1px solid rgb(201, 199, 190);
+  align-items: center;
+  
+}
+
+.Feeder-holder {
+  flex:0.4;
+  border-right:1px solid rgb(201, 199, 190);
+
+}
+
+.RightBar-holder {
+  flex:0.3
+}
+
+
+.Navigation-holder > div {
+  margin:20px
+}
+.hidden {
+  display: none;
+}
+

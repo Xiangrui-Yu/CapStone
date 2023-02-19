@@ -8,13 +8,13 @@ class Tweet (db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('user.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     body = db.Column(db.String(255), nullable = False)
 
-    users = db.relationship('users',back_populates='tweets')
-    replies = db.relationship('replies',back_populates='tweets',cascade='all,delete-orphan')
-    likes = db.relationship('likes', back_populates ='tweets',cascade='all,delete-orphan')
-    retweets = db.relationship('retweets', back_populates='tweets',cascade='all,delete-orphan')
+    users = db.relationship('User',back_populates='tweets')
+    replies = db.relationship('Reply',back_populates='tweets',cascade='all,delete-orphan')
+    likes = db.relationship('Like', back_populates ='tweets',cascade='all,delete-orphan')
+    retweets = db.relationship('Retweet', back_populates='tweets',cascade='all,delete-orphan')
 
     def to_dict(self):
         return {
@@ -38,10 +38,10 @@ class Reply(db.Model):
 
     tweet_id =db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tweets.id')))
 
-    users = db.relationship("users",back_populates="replies")
-    tweets = db.relationship('tweets',back_populates='replies')
-    likes = db.relationship('likes',back_populates='replies',cascade='all,delete-orphan')
-    retweets = db.relationship('retweets',back_populates='replies',cascade='all,delete-orphan')
+    users = db.relationship("User",back_populates="replies")
+    tweets = db.relationship('Tweet',back_populates='replies')
+    likes = db.relationship('Like',back_populates='replies',cascade='all,delete-orphan')
+    retweets = db.relationship('Retweet',back_populates='replies',cascade='all,delete-orphan')
 
     def to_dict(self):
         return{
@@ -52,57 +52,64 @@ class Reply(db.Model):
             "retweets": self.retweets.retweet_count,
         }
 
-    class Like(db.Model):
-        __tablename__ = 'likes'
-        if environment == "production":
-            __table_args__ = {'schema': SCHEMA}
+class Like(db.Model):
+    __tablename__ = 'likes'
+    if environment == "production":
+         __table_args__ = {'schema': SCHEMA}
 
-        id = db.Column(db.Integer, primary_key=True)
-        like_count =db.Column(db.Integer)
+    id = db.Column(db.Integer, primary_key=True)
+    like_count =db.Column(db.Integer)
 
-        user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
 
-        reply_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('replies.id')))
+    reply_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('replies.id')))
 
-        tweet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tweets.id')))
+    tweet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tweets.id')))
 
-        users = db.relationship('users',back_populates='likes')
+    retweet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('retweets.id')))
 
-        tweets = db.relationship('tweets',back_populates='likes')
+    users = db.relationship('User',back_populates='likes')
 
-        replies = db.relationship('replies',back_populates='likes')
+    tweets = db.relationship('Tweet',back_populates='likes')
 
-        def to_dict(self):
-            return {
-                "like_count": self.like_count
-            }
+    replies = db.relationship('Reply',back_populates='likes')
 
-    class Retweet(db.Model):
-        __tablename__ = 'retweets'
-        if environment == "production":
-            __table_args__ = {'schema': SCHEMA}
+    retweets = db.relationship('Retweet',back_populates='likes')
 
-        id = db.Column(db.Integer,primary_key =True)
-        isOriginal = db.Column(db.Boolean, default=True)
-        retweet_count = db.Column(db.Integer)
+    def to_dict(self):
+        return {
+            "like_count": self.like_count
+        }
 
-        user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+class Retweet(db.Model):
+    __tablename__ = 'retweets'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
-        reply_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('replies.id')))
+    id = db.Column(db.Integer,primary_key =True)
+    body = db.Column(db.String(255))
+    isOriginal = db.Column(db.Boolean, default=True)
+    retweet_count = db.Column(db.Integer)
 
-        tweet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tweets.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+
+    reply_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod('replies.id')))
+
+    tweet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('tweets.id')))
 
 
-        users = db.relationship('users',back_populates='retweets')
+    users = db.relationship('User',back_populates='retweets')
 
-        tweets = db.relationship('tweets',back_populates='retweets')
+    tweets = db.relationship('Tweet',back_populates='retweets')
 
-        replies = db.relationship('replies',back_populates='retweets')
+    replies = db.relationship('Reply',back_populates='retweets')
 
-        def to_dict(self):
-            return {
-                "retweet_count": self.retweet_count
-            }
+    likes = db.relationship('Like',back_populates='retweets',cascade='all,delete-orphan')
+
+    def to_dict(self):
+        return {
+            "retweet_count": self.retweet_count
+        }
 
     
 

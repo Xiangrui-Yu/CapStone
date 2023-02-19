@@ -16,7 +16,10 @@ class User(db.Model, UserMixin):
     avatar = db.Column(db.String)
     verified = db.Column(db.Boolean, default=False)
 
-    tweets = db.relationship('tweets', back_populates='users',cascade='all,delete-orphan')
+    tweets = db.relationship('Tweet', back_populates='users',cascade='all,delete-orphan')
+    replies = db.relationship("Reply", back_populates='users', cascade='all,delete-orphan')
+    retweets = db.relationship('Retweet', back_populates='users', cascade='all,delete-orphan')
+    likes = db.relationship('Like', back_populates='users', cascade='all,delete-orphan')
 
     @property
     def password(self):

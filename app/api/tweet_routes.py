@@ -4,9 +4,9 @@ from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy.orm import joinedload
-tweet_routes = Blueprint('tweet', __name__)
 from .user_routes import user_routes
 
+tweet_routes = Blueprint('tweet', __name__)
 
 # GET ALL TWEETS
 @tweet_routes.route('', methods=['GET'])
@@ -42,7 +42,7 @@ def get_all_current():
 def get_all_userId(id):
     user = User.query.get(id)
     if not user:
-        return {'error': ["user doesn't exit"]}
+        return {'error': ["user doesn't exit"]},404
 
     allTweets = Tweet.query.options(joinedload(Tweet.users), joinedload(Tweet.likes), joinedload(
         Tweet.retweets), joinedload(Tweet.replies)).filter(Tweet.user_id == id).all()
@@ -75,35 +75,41 @@ def create_tweet():
         body = data['body']
 
     # body length cannot exceed 255 characters
-    if not 1 <= len(body) <= 255:
-        return {'error': ['body length must be between 1 and 255 characters']}, 400
+        if not 1 <= len(body) <= 255:
+            return {'error': ['body length must be between 1 and 255 characters']}, 400
 
-    newTweet = Tweet(
-        body = body,
-        user_id = current_user.id
-    )
-    db.session.add(newTweet)
-    db.session.commit()
+        newTweet = Tweet(
+            body = body,
+            user_id = current_user.id
+        )
+        db.session.add(newTweet)
+        db.session.commit()
 
-    return newTweet.to_dict()
+        return newTweet.to_dict()
+    return {'errors': ['Unauthorized'], "statusCode": 401}, 401
 
 # Edit A TWEET
 
 @tweet_routes.route('/<int:id>', methods =['PUT'])
 def edit_tweet(id):
-    tweet = Tweet.query.get(id)
+    if current_user.is_authenticated:
+        tweet = Tweet.query.get(id)
 
-    if not tweet:
-        return {'error':['tweet doesn\'t exit']},404
+        if not tweet:
+            return {'error':['tweet doesn\'t exit']},404
+        
+        if current_user.id is not tweet.user_id:
+            return {'errors': ['Unauthorized'], "statusCode": 401}, 401
+
     
-    data = request.json
+        data = request.json
 
-    tweet.body = data['body']
+        tweet.body = data['body']
 
-    db.session.commit()
+        db.session.commit()
 
-    return tweet.to_dict()
-
+        return tweet.to_dict()
+    return {'errors': ['Unauthorized'], "statusCode": 401}, 401
 
 # DELETE A TWEET
 @tweet_routes.route('/<int:id>', methods =['DELETE'])

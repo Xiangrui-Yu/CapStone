@@ -20,10 +20,10 @@ class Tweet (db.Model):
         return {
             "id": self.id,
             "body":self.body,
-            "replies":[reply.to_dict() for reply in self.replies],
-            "retweets":self.retweets.retweet_count,
-            "likes":self.likes.like_count,
-            "user": self.user.to_dict()
+            "replies":[reply.to_dict_noTweet() for reply in self.replies],
+            "retweets":[retweet.retweet_count for retweet in self.retweets],
+            "likes":[like.like_count for like in self.likes],
+            "user": self.users.to_dict()
         }
 
 class Reply(db.Model):
@@ -51,6 +51,14 @@ class Reply(db.Model):
             "likes": self.likes.like_count,
             "retweets": self.retweets.retweet_count,
         }
+    def to_dict_noTweet(self):
+        return{
+            "id":self.id,
+            "body":self.body,
+            "retweets":[retweet.retweet_count for retweet in self.retweets],
+            "likes":[like.like_count for like in self.likes],
+        }
+
 
 class Like(db.Model):
     __tablename__ = 'likes'

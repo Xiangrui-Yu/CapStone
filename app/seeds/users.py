@@ -3,12 +3,14 @@ from app.models import db, User, environment, SCHEMA
 
 def seed_users():
     demo = User(
+        name ='Demo',
         username='Demo', 
         email='demo@aa.io', 
         password='password',
         avatar='https://images.unsplash.com/photo-1474511320723-9a56873867b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3272&q=80',
         verified = True)
     marnie = User(
+        name='marnie',
         username='marnie',
         email='marnie@aa.io', 
         password='password',
@@ -16,6 +18,7 @@ def seed_users():
         verified = False
         )
     bobbie = User(
+        name='bobbie',
         username='bobbie',
         email='bobbie@aa.io',
         password='password',
@@ -23,6 +26,7 @@ def seed_users():
         verified= True
         )
     sarah = User(
+        name='sarah',
         username='sarah',
         email='sarah@aa.io',
         password='password',
@@ -30,6 +34,7 @@ def seed_users():
         verified= False
     )
     jesse = User(
+        name='jesse',
         username='jesse',
         email='jesse@aa.io',
         password='password',

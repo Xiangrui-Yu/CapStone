@@ -6,8 +6,13 @@
   justify-content: space-around;
   border-right:1px solid rgb(201, 199, 190);
   align-items: center;
+  color:black
+}
+.fa-brands.fa-twitter{
+  color: #57b6f1 !important
   
 }
+
 
 .Feeder-holder {
   flex:0.4;

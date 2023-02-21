@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/HomePage/Navigation";
 import {Feeder} from "./components/HomePage/Feeder";
 import { RightBar } from "./components/HomePage/RightBar";
+import { AllTweets } from "./components/Tweets/AllTweets";
 import "./index.css"
 
 function App() {
@@ -20,10 +21,7 @@ function App() {
   return (
     <div className="app">
       <Navigation isLoaded={isLoaded} />
-      <Feeder />
-      <RightBar />
-
-      <feeder />
+      {/* <Feeder /> */}
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -32,8 +30,16 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+
+          <Route path="">
+            <Feeder />
+          </Route>
+
+
+
         </Switch>
       )}
+      <RightBar />
     </div>
   );
 }

@@ -19,10 +19,10 @@ function Navigation({ isLoaded }) {
 			</div>
 
 			<div>
-				<i className="fa-regular fa-user">Profile</i>
+				<i className="fa-regular fa-user"></i> Profile
 			</div>
 			<div>
-				<i class="fa-sharp fa-regular fa-envelope">Message</i>
+				<i class="fa-sharp fa-regular fa-envelope"></i> Message
 			</div>
 
 			{isLoaded && (

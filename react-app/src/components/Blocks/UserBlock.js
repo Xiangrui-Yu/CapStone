@@ -1,8 +1,8 @@
 import './UserBlock.css'
+import { DeleteEditButton } from './DeleteEditButton'
 
 export const UserBlock = ({ userData }) => {
     const { name, avatar, username, verified } = userData
-    console.log(verified)
 
     return (
         <div className='user_holder'>
@@ -15,6 +15,9 @@ export const UserBlock = ({ userData }) => {
                     {verified && <i className="fa-duotone fa-badge-check"></i>}
                     @{username}
                 </span>            
+            </div>
+            <div>
+                <DeleteEditButton />
             </div>
         </div>
     )

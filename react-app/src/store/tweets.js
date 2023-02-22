@@ -1,16 +1,21 @@
 const ALL_TWEETS = 'tweets/GET_ALL_TWEETS'
 const POST_T = 'tweets/POST_T'
+const DELETE_T ='tweets/DELETE_T'
 
 const getAllTweets = (tweets) => ({
     type: ALL_TWEETS,
     tweets
 })
 
-const newT = (data) => ({
+const newT = (tweets) => ({
     type: POST_T,
-    data
+    tweets
 })
 
+const deleteT = (tweetId) => ({
+    type:DELETE_T,
+    tweetId
+})
 
 
 export const loadAllTweets = () => async dispatch => {
@@ -38,6 +43,15 @@ export const postNewT = (tweets) => async dispatch => {
 
 }
 
+export const deleteTweet = (tweetId) => async dispatch =>{
+    const res = await fetch(`/api/tweets/${tweetId}`,{
+        method:'delete'
+    });
+    
+    if(res.ok){
+        dispatch(deleteT(tweetId))
+    }
+}
 
 const tweetReducer = (state = {}, action) => {
     switch (action.type) {
@@ -52,6 +66,11 @@ const tweetReducer = (state = {}, action) => {
         case POST_T:{
             const newState = {...state}
             newState[action.tweets.id] = action.tweets
+            return newState
+        }
+        case DELETE_T:{
+            const newState = {...state}
+            delete newState[action.tweetId]
             return newState
         }
         default: {

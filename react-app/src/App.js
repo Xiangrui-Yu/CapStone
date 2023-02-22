@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/HomePage/Navigation";
 import {Feeder} from "./components/HomePage/Feeder";
 import { RightBar } from "./components/HomePage/RightBar";
-import { AllTweets } from "./components/Tweets/AllTweets";
+import { DeleteT } from "./components/Tweets/DeleteT";
 import "./index.css"
 
 function App() {
@@ -21,7 +21,6 @@ function App() {
   return (
     <div className="app">
       <Navigation isLoaded={isLoaded} />
-      {/* <Feeder /> */}
       {isLoaded && (
         <Switch>
           <Route path="/login" >
@@ -34,7 +33,9 @@ function App() {
           <Route path="">
             <Feeder />
           </Route>
-
+          <Route path="/tweets/:tweetId">
+            <DeleteT />
+          </Route>
 
 
         </Switch>

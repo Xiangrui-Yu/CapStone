@@ -25,6 +25,7 @@ export const AddT = () => {
         const createNewTweet = await dispatch(postNewT(payload))
 
         if(createNewTweet){
+            setBody('')
             history.push('/')
         }
     }

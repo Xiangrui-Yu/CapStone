@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { DeleteT } from "../Tweets/DeleteT";
-import OpenModalButton from "../OpenModalButton";
+import { EditT } from "../Tweets/EditT";
+
 
 export const DeleteEditButton = ({ tweetId }) => {
     const dispatch = useDispatch();
@@ -16,30 +17,33 @@ export const DeleteEditButton = ({ tweetId }) => {
     useEffect(() => {
         if (!showMenu) return;
 
-        const closeMenu = (e) => {
-            // TODO what does below code mean?
-            if (!ulRef.current.contains(e.target)) {
-                setShowMenu(false);
-            }
+        const closeMenu = () => {
+          if (document.activeElement.tagName === "INPUT") {
+            return; 
+          }
+          setShowMenu(false);
         };
-
         document.addEventListener("click", closeMenu);
 
         return () => document.removeEventListener("click", closeMenu);
     }, [showMenu])
-    const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  
 
-    const closeMenu = () => setShowMenu(false);
 
     return (
         <div className="delete-edit-button-container">
           <button onClick={openMenu}>
             <i className="fa-solid fa-ellipsis" />
             {showMenu && (
-              <ul className={ulClassName} ref={ulRef}>
+              <ul className="delete-edit-buttons" ref={ulRef}>
                 <li>
-                  <DeleteT />
+                  <DeleteT tweetId={tweetId}/>
                 </li>
+                <li>
+                  <EditT tweetId={tweetId}/>
+                </li>
+
+
               </ul>
             )}
           </button>

@@ -10,7 +10,6 @@ export const AllTweets = () => {
 
     const tweetsObj = useSelector(state => state?.tweets)
     const tweets = Object.values(tweetsObj)
-    console.log(tweets, " this is tweets")
 
     useEffect(() => {
         dispatch(loadAllTweets())
@@ -22,7 +21,7 @@ export const AllTweets = () => {
                 {tweets && tweets?.map(tweet => {
                     return (
                         <>
-                            <UserBlock userData={tweet.user} />
+                            <UserBlock userData={tweet.user} tweetId= {tweet.id} />
                             <div>{tweet.body}</div>
                             <FooterBlock like = {tweet.likes} retweet ={tweet.retweets} />
 

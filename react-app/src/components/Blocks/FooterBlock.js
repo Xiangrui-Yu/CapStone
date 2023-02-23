@@ -7,7 +7,7 @@ export const FooterBlock = ({ like, retweet }) => {
                 <reply />
             </div> */}
             <div className='retweet_part'>
-                {retweet[0] ? (
+                {retweet &&retweet[0] ? (
                     <>
                         <i className="fa-solid fa-retweet"></i>
                         {retweet[0]}
@@ -19,7 +19,7 @@ export const FooterBlock = ({ like, retweet }) => {
             </div>
 
             <div className='like_part'>
-                {like[0] ? (
+                {like &&like[0] ? (
                     <>
                         <i className="fa-regular fa-heart"></i>
                         {like[0]}

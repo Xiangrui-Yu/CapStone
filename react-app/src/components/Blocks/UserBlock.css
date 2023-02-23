@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     flex-direction: row;
-    color:black
+    color:black;
+    padding-top:10px
 
 }
 
@@ -32,4 +33,13 @@ img{
     font-size: 12px;
     color: gray
 
+}
+
+.delete-edit-button{
+    margin-left:auto;
+    margin-right:10px
+}
+
+.delete-edit-button:hover{
+    background-color: #c5e1f4
 }

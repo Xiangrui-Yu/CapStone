@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { loadAllTweets } from '../../store/tweets'
 import { UserBlock } from '../Blocks/UserBlock'
 import { FooterBlock } from '../Blocks/FooterBlock'
+import './tweets.css'
 
 export const AllTweets = () => {
     const dispatch = useDispatch();
@@ -17,12 +18,12 @@ export const AllTweets = () => {
 
     return (
         <>
-            <div className='t_header'>
+            <div className='post-body-holder'>
                 {tweets && tweets?.map(tweet => {
                     return (
                         <>
                             <UserBlock userData={tweet.user} tweetId= {tweet.id} />
-                            <div>{tweet.body}</div>
+                            <div className='post-body'>{tweet.body}</div>
                             <FooterBlock like = {tweet.likes} retweet ={tweet.retweets} />
 
                         </>

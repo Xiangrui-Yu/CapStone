@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { postNewT } from '../../store/tweets'
-
+import "./tweets.css"
 
 
 export const AddT = () => {

@@ -16,7 +16,7 @@ export const UserBlock = ({ userData,tweetId }) => {
                     @{username}
                 </span>            
             </div>
-            <div className='delete-button'>
+            <div className='delete-edit-button'>
                 <DeleteEditButton tweetId={tweetId} />
             </div>
         </div>

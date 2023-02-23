@@ -32,7 +32,7 @@ export const DeleteEditButton = ({ tweetId }) => {
 
     return (
         <div className="delete-edit-button-container">
-          <button onClick={openMenu}>
+          <button style={{border:'none'}}onClick={openMenu}>
             <i className="fa-solid fa-ellipsis" />
             {showMenu && (
               <ul className="delete-edit-buttons" ref={ulRef}>

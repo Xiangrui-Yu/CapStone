@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { DeleteT } from "../Tweets/DeleteT";
 import { EditT } from "../Tweets/EditT";
+import './DeleteEditButton.css'
+
 
 
 export const DeleteEditButton = ({ tweetId }) => {

@@ -22,5 +22,4 @@ export const UserBlock = ({ userData,tweetId }) => {
         </div>
     )
 
-
 }

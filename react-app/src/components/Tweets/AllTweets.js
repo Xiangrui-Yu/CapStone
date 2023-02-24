@@ -24,7 +24,7 @@ export const AllTweets = () => {
                         <>
                             <UserBlock userData={tweet.user} tweetId= {tweet.id} />
                             <div className='post-body'>{tweet.body}</div>
-                            <FooterBlock like = {tweet.likes} retweet ={tweet.retweets} />
+                            <FooterBlock like = {tweet.likes} retweet ={tweet.retweets} tweetId ={tweet.id} />
 
                         </>
                     )

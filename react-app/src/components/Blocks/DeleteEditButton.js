@@ -6,7 +6,7 @@ import './DeleteEditButton.css'
 
 
 
-export const DeleteEditButton = ({ tweetId }) => {
+export const DeleteEditButton = ({ id }) => {
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
     const ulRef = useRef()
@@ -39,10 +39,10 @@ export const DeleteEditButton = ({ tweetId }) => {
             {showMenu && (
               <ul className="delete-edit-buttons" ref={ulRef}>
                 <li>
-                  <DeleteT tweetId={tweetId}/>
+                  <DeleteT tweetId={id}/>
                 </li>
                 <li>
-                  <EditT tweetId={tweetId}/>
+                  <EditT tweetId={id}/>
                 </li>
 
 

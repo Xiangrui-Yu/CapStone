@@ -8,7 +8,6 @@ export const FooterBlock = ({ like, retweet, tweetId }) => {
         <span className='footer_holder'>
             <div className='rely_part'>
                 <ReplyButton tweetId={tweetId} />
-                {/* <PostRely tweetId={tweetId} /> */}
             </div>
             <div className='retweet_part'>
                 {retweet && retweet[0] ? (

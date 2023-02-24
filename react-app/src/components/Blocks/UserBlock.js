@@ -1,7 +1,7 @@
 import './UserBlock.css'
 import { DeleteEditButton } from './DeleteEditButton'
 
-export const UserBlock = ({ userData,tweetId }) => {
+export const UserBlock = ({ userData,id }) => {
     const { name, avatar, username, verified } = userData ||{}
 
     return (
@@ -17,7 +17,7 @@ export const UserBlock = ({ userData,tweetId }) => {
                 </span>            
             </div>
             <div className='delete-edit-button'>
-                <DeleteEditButton tweetId={tweetId} />
+                <DeleteEditButton id={id} />
             </div>
         </div>
     )

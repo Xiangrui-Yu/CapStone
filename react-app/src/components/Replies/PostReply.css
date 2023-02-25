@@ -1,0 +1,23 @@
+.reply-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.replyBody{
+    height: 100px;
+    border-bottom: 5px solid rgb(234, 224, 224)
+
+}
+
+.reply-post{
+    background-color: #5b98be;
+    border:none;
+    color: white;
+    font-weight: 800;
+    border-radius: 30px;
+    width: 60px;
+    height:30px;
+    margin-top:20px;
+    margin-left:auto
+}

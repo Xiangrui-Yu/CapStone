@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { addReply } from '../../store/replies'
+import './PostReply.css'
 
-export const PostRely = ({ tweetId }) => {
+export const PostRely = ({tweetId}) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [body, setBody] = useState('')
@@ -26,7 +27,6 @@ export const PostRely = ({ tweetId }) => {
         if (addAReply) {
             setBody('')
             history.push(`/tweets/${tweetId}`)
-            window.location.reload(); 
         }
     }
     return (

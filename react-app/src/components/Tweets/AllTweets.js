@@ -10,7 +10,7 @@ export const AllTweets = () => {
     const dispatch = useDispatch();
 
     const tweetsObj = useSelector(state => state?.tweets)
-    const tweets = Object.values(tweetsObj).sort((a,b) => b.id -a.id)
+    const tweets = Object.values(tweetsObj).sort((a, b) => b.id - a.id)
 
     useEffect(() => {
         dispatch(loadAllTweets())
@@ -22,8 +22,9 @@ export const AllTweets = () => {
                 {tweets && tweets?.map(tweet => {
                     return (
                         <div key={tweet.id} className='tweet-container'>
+                            <UserBlock userData={tweet.user} id={tweet.id} />
+
                             <Link to={`/tweets/${tweet.id}`} className='link-details'>
-                                <UserBlock userData={tweet.user} id={tweet.id} />
                                 <div className='post-body'>{tweet.body}</div>
                             </Link>
                             <FooterBlock like={tweet.likes} retweet={tweet.retweets} tweetId={tweet.id} />
@@ -32,4 +33,5 @@ export const AllTweets = () => {
                 })}
             </div>
         </>
-    )}
+    )
+}

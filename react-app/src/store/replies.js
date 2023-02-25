@@ -1,9 +1,11 @@
 const POST_REPLY = 'reply/POST_REPLY'
-
+const DELETE_REPLY ='reply/DELETE_REPLY'
 const newReply = (reply) => ({
     type: POST_REPLY,
     reply
 })
+
+
 
 export const addReply = (tweetId, reply) => async (dispatch) => {
     const res = await fetch(`/api/tweets/${tweetId}/reply`, {

@@ -14,16 +14,14 @@ export const TweetDetails = () => {
     const dispatch = useDispatch()
     const isLoading = useSelector(state => state.loading);
 
-
-
     const { tweetId } = useParams();
-    console.log(tweetId)
     const TweetData = useSelector(state => state?.tweets[tweetId])
-    console.log(TweetData)
+    const replies = useSelector(state => state.replies)
 
     useEffect(() => {
         dispatch(loadDetailsOfTweet(tweetId))
-    }, [dispatch, tweetId])
+    }, [dispatch, tweetId, replies])
+
 
     if (isLoading) {
         return <p>Loading tweet details...</p>;

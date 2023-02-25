@@ -25,7 +25,7 @@ export const EditT = ({tweetId}) => {
         }
         const editTweetById = await dispatch(editTweet(tweetId, payload))
 
-        if (editTweet){
+        if (editTweetById){
             history.push('/')
         }
 

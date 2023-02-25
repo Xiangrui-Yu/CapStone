@@ -5,9 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/HomePage/Navigation";
-import {Feeder} from "./components/HomePage/Feeder";
+import { Feeder } from "./components/HomePage/Feeder";
 import { RightBar } from "./components/HomePage/RightBar";
 import { TweetDetails } from "./components/Tweets/TweetDetails";
+import { PostRely } from "./components/Replies/PostReply";
 import "./index.css"
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
-  
+
 
   return (
     <div className="app">

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { loadAllTweets } from '../../store/tweets'
 import { UserBlock } from '../Blocks/UserBlock'
 import { FooterBlock } from '../Blocks/FooterBlock'
@@ -21,16 +21,15 @@ export const AllTweets = () => {
             <div className='post-body-holder'>
                 {tweets && tweets?.map(tweet => {
                     return (
-                        <>
-                            <UserBlock userData={tweet.user} id= {tweet.id} />
-                            <div className='post-body'>{tweet.body}</div>
-                            <FooterBlock like = {tweet.likes} retweet ={tweet.retweets} tweetId ={tweet.id} />
-
-                        </>
+                        <div key={tweet.id} className='tweet-container'>
+                            <Link to={`/tweets/${tweet.id}`} className='link-details'>
+                                <UserBlock userData={tweet.user} id={tweet.id} />
+                                <div className='post-body'>{tweet.body}</div>
+                            </Link>
+                            <FooterBlock like={tweet.likes} retweet={tweet.retweets} tweetId={tweet.id} />
+                        </div>
                     )
                 })}
-
             </div>
         </>
-    )
-}
+    )}

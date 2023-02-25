@@ -79,6 +79,7 @@ class Reply(db.Model):
             "body": self.body,
             "retweets": [retweet.retweet_count for retweet in self.retweets],
             "likes": [like.like_count for like in self.likes],
+            'user':self.users.to_dict()
         }
 
 

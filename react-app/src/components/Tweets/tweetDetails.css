@@ -1,0 +1,17 @@
+.Tweet-detail-holder{
+    flex:0.4;
+    border-right:1px solid rgb(201, 199, 190);
+  
+}
+.tweet-detail-user{
+    margin-top:5px;
+}
+
+.tweet-detail-body{
+    margin-left: 10px
+}
+
+.tweet-detail-reply-post{
+    margin-top: 5px;
+    
+}

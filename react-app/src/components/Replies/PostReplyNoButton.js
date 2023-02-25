@@ -25,7 +25,7 @@ export const PostRelyNoButton = ({ tweetId }) => {
 
         if (addAReply) {
             setBody('')
-            history.push('/')
+            history.push(`/tweets/${tweetId}`)
         }
     }
     return (
@@ -46,13 +46,6 @@ export const PostRelyNoButton = ({ tweetId }) => {
                     required
                 />
             </label>
-
-            {/* <button
-                className='reply-post'
-                type='submit'
-            >
-                Reply
-            </button> */}
 
 
         </form>

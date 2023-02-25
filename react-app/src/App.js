@@ -7,7 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/HomePage/Navigation";
 import {Feeder} from "./components/HomePage/Feeder";
 import { RightBar } from "./components/HomePage/RightBar";
-import { DeleteT } from "./components/Tweets/DeleteT";
+import { TweetDetails } from "./components/Tweets/TweetDetails";
 import "./index.css"
 
 function App() {
@@ -29,14 +29,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/tweets/:tweetId">
+            <TweetDetails />
+          </Route>
 
           <Route path="">
             <Feeder />
           </Route>
-          <Route path="/tweets/:tweetId">
-            <DeleteT />
-          </Route>
-
 
         </Switch>
       )}

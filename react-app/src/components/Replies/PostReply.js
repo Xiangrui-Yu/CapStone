@@ -3,15 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { addReply } from '../../store/replies'
 
-export const PostRelyNoButton = ({ tweetId }) => {
+export const PostRely = ({ tweetId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    console.log(tweetId, " this is the tweetId on the post reply")
     const [body, setBody] = useState('')
     const [errors, setErrors] = useState([])
+    console.log(tweetId,'this is tweetId')
 
 
     const currentUser = useSelector(state => state.session.user)
+
 
     const handleSubmit = async (e) => {
         console.log('handleSubmit called');
@@ -20,12 +21,12 @@ export const PostRelyNoButton = ({ tweetId }) => {
         const payload = {
             body
         }
-        console.log(body, " what is inside the payload")
         const addAReply = await dispatch(addReply(tweetId, payload))
 
         if (addAReply) {
             setBody('')
-            history.push('/')
+            history.push(`/tweets/${tweetId}`)
+            window.location.reload(); 
         }
     }
     return (

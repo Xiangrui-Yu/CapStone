@@ -2,6 +2,10 @@ const ALL_TWEETS = 'tweets/GET_ALL_TWEETS'
 const POST_T = 'tweets/POST_T'
 const DELETE_T ='tweets/DELETE_T'
 const EDIT_T='tweets/EDIT_T'
+const DETAIL_T ='tweets/DETAIL'
+
+
+
 
 const getAllTweets = (tweets) => ({
     type: ALL_TWEETS,
@@ -23,6 +27,10 @@ const editT= (body) =>({
     body
 })
 
+const detailT = (tweet) => ({
+    type:DETAIL_T,
+    tweet
+})
 
 export const loadAllTweets = () => async dispatch => {
     const res = await fetch('/api/tweets')
@@ -76,6 +84,15 @@ export const editTweet = (tweetId,body) => async dispatch => {
     }
 }
 
+export const loadDetailsOfTweet = (tweetId) => async dispatch => {
+    const res =await fetch(`/api/tweets/${tweetId}`)
+    if(res.ok){
+        const tweet = await res.json()
+        dispatch(detailT(tweet))
+    }
+    
+}
+
 const tweetReducer = (state = {}, action) => {
     switch (action.type) {
         case ALL_TWEETS: {
@@ -100,6 +117,12 @@ const tweetReducer = (state = {}, action) => {
             const newState = {...state}
             newState[action.body.id] = action.body
             console.log(action.body.id, "hello check here")
+            return newState
+        }
+
+        case DETAIL_T:{
+            const newState = {};
+            newState[action.tweet.id] = action.tweet
             return newState
         }
         default: {

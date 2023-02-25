@@ -16,7 +16,7 @@ export const addReply = (tweetId, reply) => async (dispatch) => {
     if(res.ok){
         const reply = await res.json()
         dispatch(newReply(reply))
-        console.log(reply, " this is the reply in the thunk reduction creator")
+        console.log(reply,'this is the reply')
         return reply
     }
 }
@@ -29,9 +29,8 @@ export const addReply = (tweetId, reply) => async (dispatch) => {
 const replyReducer = (state = {}, action) => {
     switch (action.type) {
         case POST_REPLY:{
-            const newState = {}
+            const newState = {...state}
             newState[action.reply.id] = action.reply
-            console.log(newState, " this is newState in the reply post")
             return newState
         }
 

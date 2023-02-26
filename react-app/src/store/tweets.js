@@ -1,10 +1,9 @@
+import { getReplies } from "./replies"
 const ALL_TWEETS = 'tweets/GET_ALL_TWEETS'
 const POST_T = 'tweets/POST_T'
 const DELETE_T ='tweets/DELETE_T'
 const EDIT_T='tweets/EDIT_T'
 const DETAIL_T ='tweets/DETAIL'
-
-
 
 
 const getAllTweets = (tweets) => ({
@@ -89,6 +88,8 @@ export const loadDetailsOfTweet = (tweetId) => async dispatch => {
     if(res.ok){
         const tweet = await res.json()
         dispatch(detailT(tweet))
+        dispatch(getReplies(tweetId))
+
     }
     
 }
@@ -121,7 +122,7 @@ const tweetReducer = (state = {}, action) => {
         }
 
         case DETAIL_T:{
-            const newState = {};
+            const newState = {...state};
             newState[action.tweet.id] = action.tweet
             return newState
         }

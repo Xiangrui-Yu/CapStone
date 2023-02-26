@@ -1,5 +1,7 @@
+import { ReplyEditDelete } from "./ReplyEditDelete"
 
-export const ReplyHeader = ({ userData }) => {
+
+export const ReplyHeader = ({ userData, id }) => {
     const { name, avatar, username, verified } = userData ||{}
 
     return (
@@ -14,9 +16,9 @@ export const ReplyHeader = ({ userData }) => {
                     @{username}
                 </span>            
             </div>
-            {/* <div className='delete-edit-button'>
-                <DeleteEditButton id={id} />
-            </div> */}
+            <div className='delete-edit-button'>
+                <ReplyEditDelete id={id} />
+            </div>
         </div>
     )
 

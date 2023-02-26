@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { deleteTheReply } from '../../store/replies'
 
 
-export const ReplyDelete = ({ tweetId }) => {
+export const ReplyDelete = ({ ReplyId }) => {
     const [errors, setErrors] = useState([])
     const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ export const ReplyDelete = ({ tweetId }) => {
     return (
         <button
             onClick={() => {
-                dispatch(deleteTheReply).catch(async (res) => {
+                dispatch(deleteTheReply(ReplyId)).catch(async (res) => {
                     setErrors([]);
                     const error = await res.json();
                     if (error) setErrors([error])

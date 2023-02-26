@@ -8,6 +8,7 @@ import { FooterBlock } from "../Blocks/FooterBlock"
 import { PostRely } from "../Replies/PostReply"
 import { ReplyHeader } from "../Replies/ReplyHeader"
 import { ReplyFooter } from "../Replies/ReplyFooter"
+import { useCallback } from 'react';
 import './tweetDetails.css'
 
 export const TweetDetails = () => {
@@ -15,12 +16,14 @@ export const TweetDetails = () => {
     const isLoading = useSelector(state => state.loading);
 
     const { tweetId } = useParams();
+    const replies = useSelector(state => state?.replies)
+
     const TweetData = useSelector(state => state?.tweets[tweetId])
-    const replies = useSelector(state => state.replies)
 
     useEffect(() => {
         dispatch(loadDetailsOfTweet(tweetId))
-    }, [dispatch, tweetId, replies])
+    }, [dispatch, tweetId, JSON.stringify(replies)])
+
 
 
     if (isLoading) {
@@ -44,15 +47,15 @@ export const TweetDetails = () => {
                         <PostRely tweetId={TweetData.id} />
                     </div>
                     <div className="tweet-detail-reply-body">
-                        {TweetData && TweetData.replies.sort((a,b) =>b.id-a.id) && TweetData.replies.map(reply => {
+                        {TweetData && TweetData.replies.sort((a, b) => b.id - a.id) && TweetData.replies.map(reply => {
                             return (
                                 <>
                                     <div className="rely-header">
-                                        <ReplyHeader userData={reply.user} />
+                                        <ReplyHeader userData={reply.user} id={reply.id} />
                                     </div>
                                     <div className="rely-body">{reply.body}</div>
                                     <div className="reply-footer">
-                                        <ReplyFooter like={reply.like} retweet ={reply.retweet} />
+                                        <ReplyFooter like={reply.like} retweet={reply.retweet} />
                                     </div>
 
                                 </>

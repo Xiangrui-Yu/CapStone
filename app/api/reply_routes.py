@@ -34,25 +34,29 @@ def get_all_replies(id):
     if not user:
         return {'error': ["user doesn't exit"]}, 404
 
-    replies = Reply.query.options(joinedload(Reply.users), joinedload(Reply.likes), joinedload(Reply.retweets)). filter(Reply.user_id == id). all()
+    replies = Reply.query.options(joinedload(Reply.users), joinedload(
+        Reply.likes), joinedload(Reply.retweets)). filter(Reply.user_id == id). all()
 
     repliesObj = [reply.to_dict() for reply in replies]
 
     return {'replies': repliesObj}
 
 # GET A REPLY BY ID
+
+
 @reply_routes.route('/<int:id>', methods=['GET'])
 def get_reply_id(id):
 
     reply = Reply.query.get(id)
 
     if not reply:
-        return {'error':['reply doesn\'t exit']},404
+        return {'error': ['reply doesn\'t exit']}, 404
     return reply.to_dict()
 
 # POST A REPLY
 
-@tweet_routes.route('/<int:id>/reply', methods =['POST'])
+
+@tweet_routes.route('/<int:id>/reply', methods=['POST'])
 def post_reply(id):
 
     if current_user.is_authenticated:
@@ -65,9 +69,9 @@ def post_reply(id):
             return {'error': ['body length must be between 1 and 255    characters']}, 400
 
         newReply = Reply(
-            body = body,
-            user_id = current_user.id,
-            tweet_id = id
+            body=body,
+            user_id=current_user.id,
+            tweet_id=id
         )
         db.session.add(newReply)
         db.session.commit()
@@ -76,17 +80,19 @@ def post_reply(id):
     return {'errors': ['Unauthorized'], "statusCode": 401}, 401
 
 # Edit A REPLY
+
+
 @reply_routes.route('/<int:id>', methods=['PUT'])
 def edit_reply(id):
     if current_user.is_authenticated:
         reply = Reply.query.get(id)
 
         if not reply:
-            return {'error':['reply doesn\'t exit']},404
-        
+            return {'error': ['reply doesn\'t exit']}, 404
+
         if current_user.id is not reply.user_id:
             return {'errors': ['Unauthorized'], "statusCode": 401}, 401
-        
+
         data = request.json
 
         reply.body = data['body']
@@ -99,16 +105,32 @@ def edit_reply(id):
 
 
 # DELETE A TWEET
-@reply_routes.route('/<int:id>', methods =['DELETE'])
+@reply_routes.route('/<int:id>', methods=['DELETE'])
 def delete_reply(id):
     if current_user.is_authenticated:
         reply = Reply.query.get(id)
 
         if not reply:
-            return {'error':['reply doesn\'t exit']},404
+            return {'error': ['reply doesn\'t exit']}, 404
         db.session.delete(reply)
         db.session.commit()
         return "successfully"
 
-
     return {'errors': ['Unauthorized'], "statusCode": 401}, 401
+
+
+# GET ALL REPLIES OF A TWEET
+
+@tweet_routes.route('/<int:id>/replies', methods=['GET'])
+def get_all_replies_tweet(id):
+
+    tweet = Tweet.query.get(id)
+    if not tweet:
+        return {'error': ["tweet doesn't exit"]}, 404
+    
+    replies = Reply.query.options(joinedload(Reply.users), joinedload(
+        Reply.likes), joinedload(Reply.retweets)). filter(Reply.tweet_id == id). all()
+
+    repliesObj = [reply.to_dict() for reply in replies]
+
+    return {'replies': repliesObj}

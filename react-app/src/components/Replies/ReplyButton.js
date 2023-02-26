@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { PostRelyNoButton } from "./PostReplyNoButton";
-
+import OpenModalButton from "../OpenModalButton";
 
 export const ReplyButton = ({ tweetId }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -24,19 +24,18 @@ export const ReplyButton = ({ tweetId }) => {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu])
 
+  const closeMenu = () => setShowMenu(false);
 
 
   return (
     <div className="reply-button-container">
-      <button style={{ border: 'none' }} onClick={openMenu}>
-        <i class="fa-regular fa-comment"></i>
-        {showMenu && (
-          <div className="reply-button" >
-              <PostRelyNoButton tweetId={tweetId} />
-     
-          </div>
-        )}
-      </button>
+        <div className="reply-button"  style={{border:"none",ourline:"none"}}>
+          <OpenModalButton
+            buttonText={<i className="fa-regular fa-comment"></i>}
+            onItemClick={closeMenu}
+            modalComponent={<PostRelyNoButton tweetId={tweetId} />}
+          />
+        </div>
     </div>
   );
 

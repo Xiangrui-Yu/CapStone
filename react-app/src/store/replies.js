@@ -5,6 +5,11 @@ const newReply = (reply) => ({
     reply
 })
 
+export const DeleteReply = (replyId) => ({
+    type:DELETE_REPLY,
+    replyId
+})
+
 
 
 export const addReply = (tweetId, reply) => async (dispatch) => {
@@ -23,6 +28,14 @@ export const addReply = (tweetId, reply) => async (dispatch) => {
     }
 }
 
+export const deleteTheReply = (replyId) => async dispatch => {
+    const res = await fetch(`/api/replies/${replyId}`,{
+        method:'delete'
+    })
+    if(res.ok){
+        dispatch(DeleteReply(replyId))
+    }
+}
 
 
 
@@ -33,6 +46,12 @@ const replyReducer = (state = {}, action) => {
         case POST_REPLY:{
             const newState = {...state}
             newState[action.reply.id] = action.reply
+            return newState
+        }
+
+        case DELETE_REPLY:{
+            const newState = {...state}
+            delete newState[action.replyId]
             return newState
         }
 

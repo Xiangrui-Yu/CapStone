@@ -4,14 +4,14 @@ import { useHistory, useParams } from 'react-router-dom'
 import { deleteTweet } from '../../store/tweets'
 
 export const DeleteT = ({tweetId}) =>{
-    // const {tweetId} = useParams();
+    const history = useHistory()
     const [errors, setErrors] = useState([]);
     const dispatch = useDispatch();
 
     return(
         <button
             onClick={() =>{
-                dispatch(deleteTweet(tweetId)).catch(async (res) => {
+                dispatch(deleteTweet(tweetId)).then(() =>{history.push("/")}).catch(async (res) => {
                     setErrors([]);
                     const error = await res.json();
                     if (error) setErrors([error])

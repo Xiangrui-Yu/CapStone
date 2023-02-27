@@ -32,14 +32,14 @@ function LoginFormModal() {
   }
 
   return (
-    <>  
+    <div className="login-container">  
 
-      <h1>Log In</h1>
-      <form onSubmit={demoUser}>
+      <h1 className="login-h1">Log In</h1>
+      <form className="login-demo" onSubmit={demoUser}>
         <button type="submit">Log in as Demo</button>
       </form>
 
-      <form onSubmit={handleSubmit}>
+      <form className="login-user" onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -63,9 +63,9 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="login-button" type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

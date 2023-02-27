@@ -1,0 +1,13 @@
+.login-page{
+    display: flex;
+    flex-direction: row;
+}
+
+.login-page-buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-brands.fa-twitter{
+    font-size:50px
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { addReply } from '../../store/replies'
+import './PostReply.css'
 
 export const PostRelyNoButton = ({ tweetId }) => {
     const dispatch = useDispatch();
@@ -29,24 +30,27 @@ export const PostRelyNoButton = ({ tweetId }) => {
         }
     }
     return (
-        <form className='replyBody'
+        <form className='replyBody-No-Button'
             onSubmit={handleSubmit}
         >
-            {currentUser &&
-                <img src={currentUser.avatar}></img>}
+            <div className='replyBody-No-Button-content'>
+                {currentUser &&
+                    <img src={currentUser.avatar}></img>}
 
-            <label>
+                <label>
 
-                <input
-                    type='text'
-                    name='body'
-                    placeholder='tweet your reply'
-                    value={body}
-                    onChange={e => setBody(e.target.value)}
-                    required
-                />
-            </label>
+                    <input
+                        type='text'
+                        name='body'
+                        placeholder='tweet your reply'
+                        value={body}
+                        onChange={e => setBody(e.target.value)}
+                        required
+                    />
+                </label>
 
+
+            </div>
 
         </form>
 

@@ -8,6 +8,7 @@ function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
 	const [username, setUsername] = useState("");
+	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
@@ -16,7 +17,7 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const data = await dispatch(signUp(name,username, email, password));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -30,8 +31,8 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
+		<div className="signup-container">
+			<h1 className="signup-h1">Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
@@ -57,6 +58,16 @@ function SignupFormModal() {
 					/>
 				</label>
 				<label>
+					name
+					<input
+						type="text"
+						value={name}
+						onChange={(e) => setName(e.target.value)}
+						required
+					/>
+				</label>
+
+				<label>
 					Password
 					<input
 						type="password"
@@ -76,7 +87,7 @@ function SignupFormModal() {
 				</label>
 				<button type="submit">Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

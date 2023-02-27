@@ -48,3 +48,38 @@ input {
     text-decoration: none;
     color: inherit;
 }
+
+
+.modal {
+    display: flex;
+    align-items: center;
+    width: 500px;
+    height: 200px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    background-color: #fff;
+    border-radius: 12px;
+  }
+
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    margin: 16px;
+  }
+
+  .EditBody input {
+    border: none;
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 16px;
+    outline: none;
+  }
+  
+
+.tweet-post {
+    align-self: flex-end
+}
+
+.tweet-post:hover {
+    background-color: #0c8bf4;
+  }

@@ -10,6 +10,7 @@ import { RightBar } from "./components/HomePage/RightBar";
 import { TweetDetails } from "./components/Tweets/TweetDetails";
 import { PostRely } from "./components/Replies/PostReply";
 import { LoginPage } from "./components/LogInPage";
+import { Userpage } from "./components/UserPage";
 import "./index.css"
 
 function App() {
@@ -36,6 +37,11 @@ function App() {
           <Route exact path="/tweets/:tweetId">
             <TweetDetails />
           </Route>
+          
+          <Route exact path="/users/:userId">
+            <Userpage />
+          </Route>
+
 
           <Route path="">
             <Feeder />

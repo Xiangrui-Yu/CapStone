@@ -4,7 +4,7 @@ const POST_T = 'tweets/POST_T'
 const DELETE_T ='tweets/DELETE_T'
 const EDIT_T='tweets/EDIT_T'
 const DETAIL_T ='tweets/DETAIL'
-
+const USER_T ='tweets/USER'
 
 const getAllTweets = (tweets) => ({
     type: ALL_TWEETS,
@@ -30,6 +30,20 @@ const detailT = (tweet) => ({
     type:DETAIL_T,
     tweet
 })
+
+const userT = (tweets) =>({
+    type:USER_T,
+    tweets
+})
+
+export const getUserTweets = (userId) => async dispatch =>{
+    const res = await fetch(`/api/users/${userId}/tweets`)
+    if(res.ok) {
+        const tweets = await res.json()
+        dispatch(userT(tweets))
+    }
+}
+
 
 export const loadAllTweets = () => async dispatch => {
     const res = await fetch('/api/tweets')
@@ -103,6 +117,15 @@ const tweetReducer = (state = {}, action) => {
             })
             return newState
         }
+        case USER_T:{
+            const newState ={}
+
+            action.tweets.Tweets.forEach(tweet =>{
+                newState[tweet.id] = tweet
+                
+            })
+            return newState
+        }       
         
         case POST_T:{
             const newState = {...state}

@@ -43,3 +43,13 @@ img{
 .delete-edit-button:hover{
     background-color: #c5e1f4
 }
+
+.link-userBlock{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+
+
+}

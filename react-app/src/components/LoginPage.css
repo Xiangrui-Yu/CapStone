@@ -1,13 +1,41 @@
 .login-page{
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
 }
 
 .login-page-buttons{
     display: flex;
     flex-direction: column;
+    padding: 15px;
 }
 
 .fa-brands.fa-twitter{
     font-size:50px
 }
+
+
+.login-page-img{
+    width:1000px;
+    height:1000px;
+    border-radius: 0%;
+    margin-left:0
+
+}
+
+.login-page-buttons button {
+    background-color: #5b98be;
+    border:none;
+    color: white;
+    font-weight: 800;
+    border-radius: 30px;
+    width: 160px;
+    height:30px;
+    margin-top:20px;
+    margin-right:auto
+  }
+  
+  .login-page-button button :hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }

@@ -4,7 +4,7 @@ import LoginFormModal from "./LoginFormModal";
 import SignupFormModal from "./SignupFormModal";
 import { useDispatch, useSelector } from "react-redux";
 import './LoginPage.css'
-
+import TwitterPic from "../Twitter.png"
 
 export const LoginPage = () => {
     const dispatch = useDispatch();
@@ -12,7 +12,7 @@ export const LoginPage = () => {
     const ulRef = useRef();
   
     const openMenu = () => {
-      if (showMenu) return;
+      if (showMenu) return
       setShowMenu(true);
     };
   
@@ -36,8 +36,8 @@ export const LoginPage = () => {
   
     return (
         <div className="login-page">
-            <div className="login-page-img">
-                <img src="../Twitter.png" alt="Twitter Logo"></img>
+            <div>
+                <img className="login-page-img" src={TwitterPic} alt="Twitter Logo"></img>
             </div>
             <div className="login-page-buttons">
                 <h1>Happending now</h1>
@@ -47,6 +47,7 @@ export const LoginPage = () => {
                     buttonText="Log In"
                     onItemClick={closeMenu}
                     modalComponent={<LoginFormModal />}
+                    
                 />
 
                 <OpenModalButton

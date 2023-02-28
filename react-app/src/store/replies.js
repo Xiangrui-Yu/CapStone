@@ -2,6 +2,7 @@ const POST_REPLY = 'reply/POST_REPLY'
 const DELETE_REPLY ='reply/DELETE_REPLY'
 const EDIT_REPLY ='reply/EDIT_REPLY'
 const LOAD_REPLIES = 'reply/LOAD_REPLIES'
+const USER_R ='replies/USER'
 
 
 const loadReplies = (reply) => ({
@@ -24,6 +25,19 @@ const EditReply =(body) => ({
     type:EDIT_REPLY,
     body
 })
+
+const UserReply = (replies) => ({
+    type:USER_R,
+    replies
+})
+
+export const getUserReplies = (userId) => async dispatch =>{
+    const res = await fetch(`/api/users/${userId}/replies`)
+    if (res.ok){
+        const replies = await res.json()
+        dispatch(UserReply(replies))
+    }
+}
 
 export const getReplies = (tweetId) => async (dispatch) => {
     const res = await fetch(`/api/tweets/${tweetId}/replies`)
@@ -82,6 +96,13 @@ const replyReducer = (state = {}, action) => {
         case POST_REPLY:{
             const newState = {...state}
             newState[action.reply.id] = action.reply
+            return newState
+        }
+        case USER_R:{
+            const newState = {}
+            action.replies.replies.forEach(reply => {
+                newState[reply.id] = reply
+            })
             return newState
         }
 

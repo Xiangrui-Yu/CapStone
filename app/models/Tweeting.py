@@ -71,6 +71,7 @@ class Reply(db.Model):
             "tweet": self.tweets.to_dict_noReply(),
             "retweets": [retweet.retweet_count for retweet in self.retweets],
             "likes": [like.like_count for like in self.likes],
+            "users":self.users.to_dict()
         }
 
     def to_dict_noTweet(self):

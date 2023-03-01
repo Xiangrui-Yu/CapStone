@@ -24,7 +24,7 @@ input {
     width: 60px;
     height:30px;
     margin-top:20px;
-    margin-right:auto
+    margin-right:auto;
 
 
 }
@@ -83,3 +83,4 @@ input {
 .tweet-post:hover {
     background-color: #0c8bf4;
   }
+

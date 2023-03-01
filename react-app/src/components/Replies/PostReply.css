@@ -47,3 +47,12 @@
     outline: none;
 
 }
+
+
+.reply-button button {
+    border:none
+}
+
+.reply-button button:hover {
+    background-color: #c5e1f4
+}

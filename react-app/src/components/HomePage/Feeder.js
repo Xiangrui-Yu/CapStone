@@ -10,6 +10,7 @@ export const Feeder = () => {
 
     return (
         <div className="Feeder-holder">
+            <h2 style={{fontSize:"20px"}}>Home</h2>
             <AddT />
             <AllTweets />
         </div>

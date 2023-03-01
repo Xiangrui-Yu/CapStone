@@ -103,6 +103,7 @@ const replyReducer = (state = {}, action) => {
             action.replies.replies.forEach(reply => {
                 newState[reply.id] = reply
             })
+            console.log(newState, "this is newState on reply by user ")
             return newState
         }
 

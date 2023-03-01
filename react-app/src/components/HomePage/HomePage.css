@@ -32,3 +32,18 @@
   display: none;
 }
 
+
+ .profile-button button{
+    border:none
+ }
+
+ .profile-button li{
+  list-style: none;
+}
+
+
+
+.logout:hover{
+  background-color: #a4c9e8
+}
+

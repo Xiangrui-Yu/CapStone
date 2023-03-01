@@ -3,6 +3,7 @@ import './UserBlock.css'
 import { DeleteEditButton } from './DeleteEditButton'
 
 
+
 export const UserBlock = ({ userData, id }) => {
     const { name, avatar, username, verified } = userData || {}
 

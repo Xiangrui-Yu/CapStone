@@ -11,12 +11,15 @@ import { TweetDetails } from "./components/Tweets/TweetDetails";
 import { PostRely } from "./components/Replies/PostReply";
 import { LoginPage } from "./components/LogInPage";
 import { Userpage } from "./components/UserPage";
+import { UserTweets } from "./components/Tweets/UserTweets";
+import { ReplyByUser } from "./components/Replies/ReplyByUser";
+
 import "./index.css"
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  const authenticated = useSelector(state => state.session.user !==null)
+  const authenticated = useSelector(state => state.session.user !== null)
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
@@ -26,7 +29,7 @@ function App() {
   return (
     <div className="app">
       {authenticated && <Navigation isLoaded={isLoaded} />}
-      {authenticated ?(isLoaded && (
+      {authenticated ? (isLoaded && (
         <Switch>
           {/* <Route path="/login" >
             <LoginFormPage />
@@ -37,9 +40,12 @@ function App() {
           <Route exact path="/tweets/:tweetId">
             <TweetDetails />
           </Route>
-          
+          <Route exact path="/users/:userId/replies">
+              <ReplyByUser />
+          </Route>
+
           <Route exact path="/users/:userId">
-            <Userpage />
+              <Userpage />
           </Route>
 
 
@@ -48,7 +54,7 @@ function App() {
           </Route>
 
         </Switch>
-      )):(
+      )) : (
         <LoginPage />
       )}
       {authenticated && <RightBar />}

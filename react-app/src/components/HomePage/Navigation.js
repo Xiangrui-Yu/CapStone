@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
+import { Profile } from '../Profile';
 import './HomePage.css';
 
 function Navigation({ isLoaded }) {
@@ -19,7 +20,7 @@ function Navigation({ isLoaded }) {
 			</div>
 
 			<div>
-				<i className="fa-regular fa-user"></i> Profile
+				<i className="fa-regular fa-user"></i> <Profile />
 			</div>
 			<div>
 				<i className="fa-sharp fa-regular fa-envelope"></i> Message

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { PostRelyNoButton } from "./PostReplyNoButton";
 import OpenModalButton from "../OpenModalButton";
+import './PostReply.css'
 
 export const ReplyButton = ({ tweetId }) => {
   const [showMenu, setShowMenu] = useState(false);

@@ -56,7 +56,7 @@ export const ReplyByUser = () => {
                             </div>
                             <div className="rely-body">{reply.body}</div>
                             <div className="reply-footer">
-                                <ReplyFooter like={reply.like} retweet={reply.retweet} />
+                                <ReplyFooter like={reply.likes} retweet={reply.retweets} id={reply.id} />
                             </div>
 
                         </>

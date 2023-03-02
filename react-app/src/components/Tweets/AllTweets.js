@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef,useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { loadAllTweets } from '../../store/tweets'
@@ -8,9 +8,11 @@ import './tweets.css'
 
 export const AllTweets = () => {
     const dispatch = useDispatch();
-
+    
     const tweetsObj = useSelector(state => state?.tweets)
     const tweets = Object.values(tweetsObj).sort((a, b) => b.id - a.id)
+    
+    const tweetLikes = useMemo(() => tweets.map(tweet => tweet.likes));
 
     useEffect(() => {
         dispatch(loadAllTweets())

@@ -1,10 +1,12 @@
 import { getReplies } from "./replies"
+import { handleLikes } from "./likes"
 const ALL_TWEETS = 'tweets/GET_ALL_TWEETS'
 const POST_T = 'tweets/POST_T'
 const DELETE_T ='tweets/DELETE_T'
 const EDIT_T='tweets/EDIT_T'
 const DETAIL_T ='tweets/DETAIL'
 const USER_T ='tweets/USER'
+
 
 const getAllTweets = (tweets) => ({
     type: ALL_TWEETS,
@@ -36,6 +38,8 @@ const userT = (tweets) =>({
     tweets
 })
 
+
+
 export const getUserTweets = (userId) => async dispatch =>{
     const res = await fetch(`/api/users/${userId}/tweets`)
     if(res.ok) {
@@ -50,6 +54,7 @@ export const loadAllTweets = () => async dispatch => {
     if (res.ok) {
         const tweets = await res.json();
         dispatch(getAllTweets(tweets))
+
     }
 }
 
@@ -149,6 +154,7 @@ const tweetReducer = (state = {}, action) => {
             newState[action.tweet.id] = action.tweet
             return newState
         }
+
         default: {
             return state
         }

@@ -1,12 +1,14 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import likeReducer from './likes';
 import replyReducer from './replies';
 import session from './session'
 import tweetReducer from './tweets';
 const rootReducer = combineReducers({
   session,
   tweets:tweetReducer,
-  replies: replyReducer
+  replies: replyReducer,
+  likes:likeReducer
 });
 
 

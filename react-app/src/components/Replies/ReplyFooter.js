@@ -1,4 +1,6 @@
-export const ReplyFooter = ({ like, retweet, tweetId }) => {
+import { HandleLikes } from "../Likes/HandleLikes"
+
+export const ReplyFooter = ({ like, retweet,id }) => {
     return (
         <span className='footer_holder'>
             {/* <div className='rely_part'>
@@ -8,7 +10,7 @@ export const ReplyFooter = ({ like, retweet, tweetId }) => {
                 {retweet && retweet[0] ? (
                     <>
                         <i className="fa-solid fa-retweet"></i>
-                        {retweet[0]}
+                        {retweet.length}
 
                     </>
                 ) : (
@@ -18,12 +20,15 @@ export const ReplyFooter = ({ like, retweet, tweetId }) => {
 
             <div className='like_part'>
                 {like && like[0] ? (
-                    <>
-                        <i className="fa-regular fa-heart"></i>
-                        {like[0]}
+                    <>  
+                        <HandleLikes object_type={'replies'} object_id={id} />
+                        {/* <i className="fa-regular fa-heart"></i> */}
+                        {like.length}
                     </>
                 ) : (
-                    <i className="fa-regular fa-heart"></i>
+                    // <i className="fa-regular fa-heart"></i>
+                    <HandleLikes object_type={'replies'} object_id={id} />
+
                 )}
             </div>
 

@@ -114,7 +114,12 @@ class Like(db.Model):
 
     def to_dict(self):
         return {
-            "like_count": self.like_count
+            "id":self.id,
+            "like_count": self.like_count,
+            "user_id": self.user_id,
+            "reply_id":self.reply_id,
+            "tweet_id":self.tweet_id,
+            "retweet_id":self.retweet_id
         }
 
 

@@ -20,6 +20,7 @@ export const TweetDetails = () => {
 
     const TweetData = useSelector(state => state?.tweets[tweetId])
 
+
     useEffect(() => {
         dispatch(loadDetailsOfTweet(tweetId))
     }, [dispatch, tweetId, JSON.stringify(replies)])
@@ -55,7 +56,7 @@ export const TweetDetails = () => {
                                     </div>
                                     <div className="rely-body">{reply.body}</div>
                                     <div className="reply-footer">
-                                        <ReplyFooter like={reply.like} retweet={reply.retweet} />
+                                        <ReplyFooter like={reply.likes} retweet={reply.retweets} id={reply.id} />
                                     </div>
 
                                 </>

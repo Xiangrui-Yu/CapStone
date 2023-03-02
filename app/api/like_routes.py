@@ -6,7 +6,7 @@ from sqlalchemy.orm import joinedload
 like_routes = Blueprint('like', __name__)
 
 
-@like_routes.route('/like/<string:object_type>/<int:object_id>', methods =['POST'])
+@like_routes.route('/<string:object_type>/<int:object_id>', methods =['POST'])
 def like_object (object_type, object_id):
     object = None
     like_object = None
@@ -32,29 +32,20 @@ def like_object (object_type, object_id):
             db.session.delete(like_object)
             db.session.commit()
             
-            if object_type == 'tweets':
-                object.like_count -=1
-            elif object_type =='replies':
-                object.likes_count -=1
-
-            db.session.commit()
-
-            return jsonify({'successfully'})
-        
+            return {'message': 'Like removed successfully'}    
         else:
 
             new_like = Like(user_id = current_user.id, like_count =1)
 
             if object_type == 'tweets':
                 new_like.tweet_id = object_id
-                object.likes_count +=1
 
             elif object_type == 'replies':
                 new_like.reply_id = object_id
-                object.likes_count +=1
+                
             db.session.add(new_like)
             db.session.commit()
 
-            return jsonify({'successfully'})
+            return new_like.to_dict()
         
     return {'errors': ['Unauthorized'], "statusCode": 401}, 401

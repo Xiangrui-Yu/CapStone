@@ -1,7 +1,8 @@
+import { getUserReplies } from "./replies"
 import { loadAllTweets } from "./tweets"
 import { getUserTweets } from "./tweets"
 import { loadDetailsOfTweet } from "./tweets"
-
+import { getReplies } from "./replies"
 const LIKE_OBJ = 'likes/LIKE_OBJ'
 
 
@@ -10,16 +11,21 @@ const loadLikes = (data) =>({
     data
 })
 
-export const handleLikes = (object_type,object_id) => async dispatch => {
+export const handleLikes = (object_type,object_id) => async (dispatch,getState) => {
     const res = await fetch(`/api/likes/${object_type}/${object_id}`,{
         method:'post'
     })
 
-    const data = await res.json()
-    dispatch(loadLikes(data))
-    // dispatch(loadDetailsOfTweet(object_id))
-    // dispatch(loadAllTweets())
-    return data
+    const data = await res.json();
+    if (object_type === 'tweets') {
+        dispatch(loadDetailsOfTweet(object_id))
+        dispatch(getReplies(object_id))
+      } else if (object_type === 'replies') {
+        const state = getState()
+        const reply = state.replies[object_id]
+        dispatch(getUserReplies(reply.user_id))
+      }
+    
 }
 
 

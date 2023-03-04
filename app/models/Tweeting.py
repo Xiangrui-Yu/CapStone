@@ -153,6 +153,9 @@ class Retweet(db.Model):
 
     def to_dict(self):
         return {
+            "id":self.id,
+            "body":self.body,
+            "likes":[like.to_dict() for like in self.likes],
             "retweet_count": self.retweet_count,
             "tweet_id" : self.tweet_id,
             "reply_id":self.reply_id,

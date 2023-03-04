@@ -17,6 +17,7 @@ export const handleLikes = (object_type,object_id) => async (dispatch,getState) 
     })
 
     const data = await res.json();
+    dispatch(loadLikes(data))
     if (object_type === 'tweets') {
         dispatch(loadDetailsOfTweet(object_id))
         dispatch(getReplies(object_id))

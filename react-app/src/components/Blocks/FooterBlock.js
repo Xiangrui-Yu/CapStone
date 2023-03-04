@@ -2,6 +2,7 @@ import { PostRely } from '../Replies/PostReplyNoButton'
 import { ReplyButton } from '../Replies/ReplyButton'
 import { HandleLikes } from '../Likes/HandleLikes'
 import { useSelector, useDispatch } from 'react-redux';
+import {HandleRetweet} from "../Retweet/HandleRetweet"
 import './FooterBlock.css'
 
 export const FooterBlock = ({ like, retweet, tweetId }) => {
@@ -14,12 +15,15 @@ export const FooterBlock = ({ like, retweet, tweetId }) => {
             <div className='retweet_part'>
                 {retweet && retweet[0] ? (
                     <>
-                        <i className="fa-solid fa-retweet"></i>
+                        <HandleRetweet object_type={"tweets"} object_id={tweetId} />
+                        {/* <i className="fa-solid fa-retweet"></i> */}
                         {retweet.length}
 
                     </>
                 ) : (
-                    <i className="fa-solid fa-retweet"></i>
+                    <HandleRetweet object_type={"tweets"} object_id={tweetId} />
+
+                    // <i className="fa-solid fa-retweet"></i>
                 )}
             </div>
 

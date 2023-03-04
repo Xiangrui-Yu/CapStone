@@ -1,5 +1,4 @@
 import { HandleLikes } from "../Likes/HandleLikes"
-
 export const ReplyFooter = ({ like, retweet,id }) => {
     return (
         <span className='footer_holder'>

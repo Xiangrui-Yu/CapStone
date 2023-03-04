@@ -1,4 +1,8 @@
+import { loadDetailsOfTweet } from "./tweets";
+import { getReplies } from "./replies";
+
 const RETWEET_OBJ = 'retweets/RETWEET_OBJ'
+
 
 const handleRetweet = (body) => ({
   type: RETWEET_OBJ,
@@ -18,6 +22,9 @@ export const retweetObj = (object_type, object_id, body) => async (dispatch) => 
   if (res.ok) {
     const body = await res.json()
     dispatch(handleRetweet(body))
+    dispatch(loadDetailsOfTweet(object_id))
+    dispatch(getReplies(object_id))
+
     return body
   }
 

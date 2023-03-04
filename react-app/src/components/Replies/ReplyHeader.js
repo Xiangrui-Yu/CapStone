@@ -1,8 +1,12 @@
+import { useSelector } from 'react-redux';
+
 import { ReplyEditDelete } from "./ReplyEditDelete"
 
 
 export const ReplyHeader = ({ userData, id }) => {
-    const { name, avatar, username, verified } = userData ||{}
+    const { name, avatar, username, verified } = userData || {}
+    const currentUser = useSelector(state => state.session.user);
+
 
     return (
         <div className='user_holder'>
@@ -14,11 +18,14 @@ export const ReplyHeader = ({ userData, id }) => {
                 <span className="user_info2">
                     {verified && <i className="fa-duotone fa-badge-check"></i>}
                     @{username}
-                </span>            
+                </span>
             </div>
-            <div className='delete-edit-button'>
-                <ReplyEditDelete id={id} />
-            </div>
+            {currentUser && userData.id === currentUser.id && (
+                <div className='delete-edit-button'>
+                    <ReplyEditDelete id={id} />
+                </div>
+
+            )}
         </div>
     )
 

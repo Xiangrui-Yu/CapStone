@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './UserBlock.css'
 import { DeleteEditButton } from './DeleteEditButton'
@@ -6,6 +7,7 @@ import { DeleteEditButton } from './DeleteEditButton'
 
 export const UserBlock = ({ userData, id }) => {
     const { name, avatar, username, verified } = userData || {}
+    const currentUser = useSelector(state => state.session.user);
 
     return (
         <div className='user_holder'>
@@ -23,9 +25,11 @@ export const UserBlock = ({ userData, id }) => {
                 </div>
             </Link>
 
-            <div className='delete-edit-button'>
-                <DeleteEditButton id={id} />
-            </div>
+            {currentUser && userData.id === currentUser.id && (
+                <div className='delete-edit-button'>
+                    <DeleteEditButton id={id} />
+                </div>
+            )}
         </div>
     )
 

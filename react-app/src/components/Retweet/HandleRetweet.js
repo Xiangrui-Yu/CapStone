@@ -8,7 +8,7 @@ import { postNewT } from '../../store/tweets';
 
 export const HandleRetweet = ({ object_type, object_id }) => {
     const dispatch = useDispatch()
-    const history = useHistory()
+    // const history = useHistory()
     const [body, setBody] = useState('')
 
     const retweet = useSelector(state => state.retweets)
@@ -32,15 +32,14 @@ export const HandleRetweet = ({ object_type, object_id }) => {
 
         console.log(originalContent, " this is original Content")
         const payload = {
-            body,
-            originalContent
+            body: `${body}\n\n${originalContent}`       
 
         }
 
         const createRetweet = await dispatch(retweetObj(object_type, object_id, payload))
-        await dispatch(postNewT({body:originalContent}))
+        await dispatch(postNewT(payload))
         setBody('')
-        history.push('/')
+        // history.push('/')
 
     }
 
@@ -54,7 +53,7 @@ export const HandleRetweet = ({ object_type, object_id }) => {
                     value={body}
                     onChange={(e) => setBody(e.target.value)}
                 />
-
+                {originalContent}
                 <button type="submit"><i className="fa-solid fa-retweet"></i></button>
             </form>
         </div>

@@ -66,12 +66,12 @@ class Reply(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            'user_id':self.user_id,
+            'user_id': self.user_id,
             "body": self.body,
             "tweet": self.tweets.to_dict_noReply(),
             "retweets": [retweet.retweet_count for retweet in self.retweets],
             "likes": [like.like_count for like in self.likes],
-            "users":self.users.to_dict()
+            "users": self.users.to_dict()
         }
 
     def to_dict_noTweet(self):
@@ -80,7 +80,7 @@ class Reply(db.Model):
             "body": self.body,
             "retweets": [retweet.retweet_count for retweet in self.retweets],
             "likes": [like.like_count for like in self.likes],
-            'user':self.users.to_dict()
+            'user': self.users.to_dict()
         }
 
 
@@ -114,12 +114,12 @@ class Like(db.Model):
 
     def to_dict(self):
         return {
-            "id":self.id,
+            "id": self.id,
             "like_count": self.like_count,
             "user_id": self.user_id,
-            "reply_id":self.reply_id,
-            "tweet_id":self.tweet_id,
-            "retweet_id":self.retweet_id
+            "reply_id": self.reply_id,
+            "tweet_id": self.tweet_id,
+            "retweet_id": self.retweet_id
         }
 
 
@@ -153,8 +153,11 @@ class Retweet(db.Model):
 
     def to_dict(self):
         return {
+            "id": self.id,
+            "body": self.body,
+            "likes": [like.to_dict() for like in self.likes],
             "retweet_count": self.retweet_count,
-            "tweet_id" : self.tweet_id,
-            "reply_id":self.reply_id,
-            "user_id":self.user_id
+            "tweet_id": self.tweet_id,
+            "reply_id": self.reply_id,
+            "user_id": self.user_id
         }

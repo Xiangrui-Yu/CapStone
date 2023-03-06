@@ -22,6 +22,10 @@ class User(db.Model, UserMixin):
     retweets = db.relationship('Retweet', back_populates='users', cascade='all,delete-orphan')
     likes = db.relationship('Like', back_populates='users', cascade='all,delete-orphan')
 
+    followers = db.relationship('Follow', foreign_keys='Follow.following_id', back_populates='following')   
+
+    following = db.relationship('Follow', foreign_keys='Follow.follower_id', back_populates='follower')
+
     @property
     def password(self):
         return self.hashed_password
@@ -40,5 +44,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'avatar':self.avatar,
-            'verified':self.verified
+            'verified':self.verified,
+            "followers": [follower.to_dict() for follower in self.followers],
+            "following": [following.to_dict() for following in self.following]
         }

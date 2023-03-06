@@ -161,3 +161,33 @@ class Retweet(db.Model):
             "reply_id": self.reply_id,
             "user_id": self.user_id
         }
+
+
+class Follow(db.Model):
+    __tablename__ = 'follows'
+
+    if environment == "production":
+        __table_args__ = (db.UniqueConstraint(
+            'follower_id', 'following_id'), {'schema': SCHEMA})
+
+    else:
+        __table_args__ = (db.UniqueConstraint('follower_id', 'following_id'),)
+
+    id = db.Column(db.Integer, primary_key=True)
+    
+    follower_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')))
+    
+    following_id = db.Column(db.Integer, db.ForeignKey(
+        add_prefix_for_prod('users.id')))
+    
+    follower = db.relationship('User', back_populates='following', foreign_keys=[follower_id])
+    following = db.relationship('User', back_populates='followers', foreign_keys=[following_id])    
+
+    def to_dict(self):
+        return {
+            "id":self.id,
+            "follower_id":self.follower_id,
+            "following_id":self.following_id,
+            
+        }

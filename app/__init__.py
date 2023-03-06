@@ -11,6 +11,7 @@ from .api.tweet_routes import tweet_routes
 from .api.reply_routes import reply_routes
 from .api.like_routes import like_routes
 from .api.retweet_routes import retweet_routes
+from .api.follow_routes import follow_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -36,7 +37,7 @@ app.register_blueprint(tweet_routes, url_prefix='/api/tweets')
 app.register_blueprint(reply_routes, url_prefix='/api/replies')
 app.register_blueprint(like_routes, url_prefix='/api/likes')
 app.register_blueprint(retweet_routes, url_prefix='/api/retweets')
-
+app.register_blueprint(follow_routes, url_prefix='/api/follows')
 
 db.init_app(app)
 Migrate(app, db)

@@ -5,6 +5,7 @@ from .replies import seed_replies,undo_replies
 from .retweets import seed_retweets,undo_retweets
 from .likes import seed_likes, undo_likes
 
+
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -23,8 +24,13 @@ def seed():
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
-        # undo_users()
+        undo_likes()
+        undo_retweets()
+        undo_replies()
+        undo_tweets()
+        undo_users()
         db.session.commit()
+        
     seed_users()
     # Add other seed functions here
     seed_tweets()

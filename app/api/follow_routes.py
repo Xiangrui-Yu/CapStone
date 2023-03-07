@@ -67,11 +67,11 @@ def get_unfollowed_users():
 
 
 
-# @follow_routes.route('/following', methods=['GET'])
-# def get_following_users():
-#     if current_user.is_authenticated:
-#         followed_ids = [follow.following_id for follow in current_user.following]
-#         followed_users = User.query.filter(User.id.in_(followed_ids), User.id != current_user.id).all()
-#         return {"following_users": }
+@follow_routes.route('/following', methods=['GET'])
+def get_following_users():
+    if current_user.is_authenticated:
+        followed_ids = [follow.following_id for follow in current_user.following]
+        followed_users = User.query.filter(User.id.in_(followed_ids), User.id != current_user.id).all()
+        return {"following_users":[user.to_dict() for user in followed_users] }
 
-#     return {'errors': ['Unauthorized'], "statusCode": 401}, 401
+    return {'errors': ['Unauthorized'], "statusCode": 401}, 401

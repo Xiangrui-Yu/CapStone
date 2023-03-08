@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { getAllFollowed } from '../../store/follows'
 import "./follow.css"
+import { UndoFollow } from './UndoFollow'
 import TwitterPic from '../../Twitter.png'
 
 
@@ -64,19 +65,25 @@ export const GetAllFollowed = () => {
             <div className='follow-users-details'>
                 {users && users.map(user => {
                     return (
-                        <Link to={`/users/${user.id}`} className='follow-users-link'>
+                        <>
+                            <Link to={`/users/${user.id}`} className='follow-users-link'>
 
-                            <div className="user_avatar">
-                                <img src={user.avatar} alt="User avatar"></img>
+                                <div className="user_avatar">
+                                    <img src={user.avatar} alt="User avatar"></img>
+                                </div>
+                                <div className="follow-user_info">
+                                    {user.name}{" "}
+                                    <span className="follow-user_info2">
+                                        {user.verified && <i className="fa-duotone fa-badge-check"></i>}
+                                        @{user.username}
+                                    </span>
+                                </div>
+                            </Link>
+                            <div>
+                                <UndoFollow userId={user.id} />
                             </div>
-                            <div className="follow-user_info">
-                                {user.name}{" "}
-                                <span className="follow-user_info2">
-                                    {user.verified && <i className="fa-duotone fa-badge-check"></i>}
-                                    @{user.username}
-                                </span>
-                            </div>
-                        </Link>
+
+                        </>
                     )
                 })}
 

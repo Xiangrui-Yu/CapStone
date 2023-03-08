@@ -20,6 +20,10 @@ const addFollow = (user) =>({
     user
 })
 
+const UndoFollow = (userId) =>({
+    type:UNFOLLOW,
+    userId
+})
 
 
 export const getAllUnfollowed = () => async dispatch =>{
@@ -50,6 +54,17 @@ export const addNewFollow = (userId) => async dispatch =>{
 }
 
 
+export const UndoTheFollow = (userId) => async dispatch =>{
+    const res = await fetch(`/api/follows/${userId}`,{
+        method:'delete'
+    })
+
+    if(res.ok){
+        dispatch(UndoFollow(userId))
+    }
+}
+
+
 
 const followReducer = (state ={}, action) => {
     switch(action.type){
@@ -72,6 +87,11 @@ const followReducer = (state ={}, action) => {
         case FOLLOW:{
             const newState = {...state}
             newState[action.user.id] = action.user
+            return newState
+        }
+        case UNFOLLOW:{
+            const newState = {...state}
+            delete newState[action.userId]
             return newState
         }
 

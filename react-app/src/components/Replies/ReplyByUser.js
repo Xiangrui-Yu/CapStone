@@ -27,6 +27,10 @@ export const ReplyByUser = () => {
     const handleTweetsClick = () => {
         history.push(`/users/${userId}`)
     }
+    const handleFollowClick = () => {
+        history.push(`/follows/following`)
+    }
+
     return (
         <div className='replyByUser-holder'>
             <img className="userpage-img" src={TwitterPic} alt="Twitter Logo"></img>
@@ -44,6 +48,12 @@ export const ReplyByUser = () => {
                 >
                     Replies
                 </button>
+                <button className='show-follow-user'
+                    onClick={() => handleFollowClick()}
+                >
+                    Following
+                </button>
+
 
             </div>
 

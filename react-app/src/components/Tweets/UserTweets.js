@@ -15,7 +15,7 @@ export const UserTweets = ({ userId }) => {
     const tweets = Object.values(tweetsObj).sort((a, b) => b.id - a.id);
     const history = useHistory()
 
-
+    
 
 
     useEffect(() => {
@@ -29,6 +29,11 @@ export const UserTweets = ({ userId }) => {
     const handleTweetsClick = () => {
         history.push(`/users/${userId}`)
     }
+
+    const handleFollowClick = () => {
+        history.push(`/follows/following`)
+    }
+
 
 
     return (
@@ -47,6 +52,12 @@ export const UserTweets = ({ userId }) => {
                     >
                         Replies
                     </button>
+                    <button className='show-follow-user'
+                        onClick={() => handleFollowClick()}
+                    >
+                        Following
+                    </button>
+
 
                 </div>
 

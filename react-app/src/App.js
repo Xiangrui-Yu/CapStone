@@ -13,6 +13,7 @@ import { LoginPage } from "./components/LogInPage";
 import { Userpage } from "./components/UserPage";
 import { UserTweets } from "./components/Tweets/UserTweets";
 import { ReplyByUser } from "./components/Replies/ReplyByUser";
+import { GetAllFollowed } from "./components/Follow/GetAllFollowed";
 
 import "./index.css"
 
@@ -47,6 +48,10 @@ function App() {
           <Route exact path="/users/:userId">
               <Userpage />
           </Route>
+          <Route exact path="/follows/following">
+              <GetAllFollowed />
+          </Route>
+
 
 
           <Route path="">

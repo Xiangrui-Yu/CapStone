@@ -11,11 +11,13 @@ import './tweets.css'
 export const UserTweets = ({ userId }) => {
     const dispatch = useDispatch()
     // const [showInfo, setShowInfo] = useState(false)
+
+    const currentUserId = useSelector(state => state.session.user.id)
     const tweetsObj = useSelector(state => state?.tweets)
     const tweets = Object.values(tweetsObj).sort((a, b) => b.id - a.id);
     const history = useHistory()
 
-
+    
 
 
     useEffect(() => {
@@ -29,6 +31,11 @@ export const UserTweets = ({ userId }) => {
     const handleTweetsClick = () => {
         history.push(`/users/${userId}`)
     }
+
+    const handleFollowClick = () => {
+        history.push(`/follows/following`)
+    }
+
 
 
     return (
@@ -47,7 +54,14 @@ export const UserTweets = ({ userId }) => {
                     >
                         Replies
                     </button>
-
+                    {userId == currentUserId && (
+                    <button
+                        className='show-follow-user'
+                        onClick={() => handleFollowClick()}
+                    >
+                        Following
+                    </button>
+                )}
                 </div>
 
 

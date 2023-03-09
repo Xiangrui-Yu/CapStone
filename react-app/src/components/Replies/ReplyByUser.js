@@ -11,6 +11,8 @@ export const ReplyByUser = () => {
     const dispatch = useDispatch()
     const { userId } = useParams()
     const repliesObj = useSelector(state => state?.replies)
+    const currentUserId = useSelector(state => state.session.user.id)
+    console.log(userId, currentUserId, 'what are user ids')
     // const [showInfo, setShowInfo] = useState(false)
     const history = useHistory()
 
@@ -27,6 +29,10 @@ export const ReplyByUser = () => {
     const handleTweetsClick = () => {
         history.push(`/users/${userId}`)
     }
+    const handleFollowClick = () => {
+        history.push(`/follows/following`)
+    }
+
     return (
         <div className='replyByUser-holder'>
             <img className="userpage-img" src={TwitterPic} alt="Twitter Logo"></img>
@@ -44,6 +50,15 @@ export const ReplyByUser = () => {
                 >
                     Replies
                 </button>
+                {userId == currentUserId && (
+                    <button
+                        className='show-follow-user'
+                        onClick={() => handleFollowClick()}
+                    >
+                        Following
+                    </button>
+                )}
+
 
             </div>
 

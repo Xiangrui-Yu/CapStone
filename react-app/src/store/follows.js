@@ -49,6 +49,8 @@ export const addNewFollow = (userId) => async dispatch =>{
     if(res.ok){
         const user = await res.json()
         dispatch(addFollow(user))
+        dispatch(getAllFollowed())
+        dispatch(getAllUnfollowed())
         return user
     }
 }
@@ -61,6 +63,9 @@ export const UndoTheFollow = (userId) => async dispatch =>{
 
     if(res.ok){
         dispatch(UndoFollow(userId))
+        dispatch(getAllFollowed())
+        dispatch(getAllUnfollowed())
+
     }
 }
 

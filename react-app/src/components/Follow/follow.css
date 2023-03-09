@@ -58,3 +58,25 @@
     flex:0.4;
     border-right:1px solid rgb(201, 199, 190);
   }
+
+  .add-user-holder{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .add-follower-button{
+    border:none
+  }
+
+  .add-follower-button:hover{
+    background-color: #80c2ee;
+
+  }
+
+
+  .undo-user-holder {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }

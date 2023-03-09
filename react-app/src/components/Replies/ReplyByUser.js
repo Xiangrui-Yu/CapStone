@@ -11,6 +11,8 @@ export const ReplyByUser = () => {
     const dispatch = useDispatch()
     const { userId } = useParams()
     const repliesObj = useSelector(state => state?.replies)
+    const currentUserId = useSelector(state => state.session.user.id)
+    console.log(userId, currentUserId, 'what are user ids')
     // const [showInfo, setShowInfo] = useState(false)
     const history = useHistory()
 
@@ -48,11 +50,14 @@ export const ReplyByUser = () => {
                 >
                     Replies
                 </button>
-                <button className='show-follow-user'
-                    onClick={() => handleFollowClick()}
-                >
-                    Following
-                </button>
+                {userId == currentUserId && (
+                    <button
+                        className='show-follow-user'
+                        onClick={() => handleFollowClick()}
+                    >
+                        Following
+                    </button>
+                )}
 
 
             </div>

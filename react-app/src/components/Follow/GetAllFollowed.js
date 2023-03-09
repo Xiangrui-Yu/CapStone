@@ -65,7 +65,7 @@ export const GetAllFollowed = () => {
             <div className='follow-users-details'>
                 {users && users.map(user => {
                     return (
-                        <>
+                        <div className='undo-user-holder'>
                             <Link to={`/users/${user.id}`} className='follow-users-link'>
 
                                 <div className="user_avatar">
@@ -83,7 +83,7 @@ export const GetAllFollowed = () => {
                                 <UndoFollow userId={user.id} />
                             </div>
 
-                        </>
+                        </div>
                     )
                 })}
 

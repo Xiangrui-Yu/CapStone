@@ -5,6 +5,7 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import './HomePage.css'
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,19 +43,22 @@ function ProfileButton({ user }) {
     <div className="profile-button">
       <button onClick={openMenu}>
         {/* <i className="fas fa-user-circle" /> */}
-        <img src={user.avatar} alt='User avatar'></img>
-
+        {user.avatar ? (
+          <img src={user.avatar} alt="User avatar" />
+        ) : (
+          <img src={DefaultAvatar} alt="Default avatar" />
+        )}
       </button>
       <ul className={ulClassName} ref={ulRef}>
-        
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout} className="logout">Log Out</button>
-            </li>
-          </>
-        
+
+        <>
+          <li>{user.username}</li>
+          <li>{user.email}</li>
+          <li>
+            <button onClick={handleLogout} className="logout">Log Out</button>
+          </li>
+        </>
+
         {/* : (
           <>
             <OpenModalButton

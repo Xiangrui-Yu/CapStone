@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { postNewT } from '../../store/tweets'
 import "./tweets.css"
-
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 export const AddT = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    
+
 
     const [body, setBody] = useState('')
     const [erros, setErrors] = useState([])
 
-    const currentUser = useSelector(state=>state.session.user)
+    const currentUser = useSelector(state => state.session.user)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ export const AddT = () => {
 
         const createNewTweet = await dispatch(postNewT(payload))
 
-        if(createNewTweet){
+        if (createNewTweet) {
             setBody('')
             history.push('/')
         }
@@ -34,11 +34,14 @@ export const AddT = () => {
         <form className='tweetBody'
             onSubmit={handleSubmit}
         >
-            {currentUser &&
-            <img src={currentUser.avatar}></img>}
+            {currentUser && currentUser.avatar ? (
+                <img src={currentUser.avatar} alt="User avatar" />
+            ) : (
+                <img src={DefaultAvatar} alt="Default avatar" />
+            )}
 
             <label>
-                
+
                 <input
                     type='text'
                     name='body'

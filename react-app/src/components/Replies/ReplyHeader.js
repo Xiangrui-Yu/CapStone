@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import { ReplyEditDelete } from "./ReplyEditDelete"
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 
 export const ReplyHeader = ({ userData, id }) => {
@@ -11,7 +12,11 @@ export const ReplyHeader = ({ userData, id }) => {
     return (
         <div className='user_holder'>
             <div className="user_avatar">
-                <img src={avatar} alt="User avatar"></img>
+                {avatar ? (
+                    <img src={avatar}></img>
+                ) : (
+                    <img src={DefaultAvatar} alt="Default avatar" />
+                )}
             </div>
             <div className="user_info">
                 {name}{" "}

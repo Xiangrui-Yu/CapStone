@@ -42,7 +42,8 @@ export const LoginPage = () => {
             <div className="login-page-buttons">
                 <h1>Happending now</h1>
                 <h2> Join Tweeting today.</h2>
-                <i className="fa-brands fa-twitter"></i>
+                <i className="fa-solid fa-kiwi-bird"></i>
+
                 <OpenModalButton
                     buttonText="Log In"
                     onItemClick={closeMenu}

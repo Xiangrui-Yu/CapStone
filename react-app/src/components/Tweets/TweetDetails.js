@@ -11,6 +11,7 @@ import { ReplyFooter } from "../Replies/ReplyFooter"
 import { useCallback } from 'react';
 import './tweetDetails.css'
 
+
 export const TweetDetails = () => {
     const dispatch = useDispatch()
     const isLoading = useSelector(state => state.loading);

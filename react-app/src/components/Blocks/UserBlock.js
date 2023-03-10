@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import './UserBlock.css'
 import { DeleteEditButton } from './DeleteEditButton'
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 
 
@@ -14,7 +15,11 @@ export const UserBlock = ({ userData, id }) => {
             <Link to={`/users/${userData.id}`} className='link-userBlock'>
 
                 <div className="user_avatar">
-                    <img src={avatar} alt="User avatar"></img>
+                    {avatar ? (
+                        <img src={avatar} alt="User avatar" />
+                    ) : (
+                        <img src={DefaultAvatar} alt="Default avatar" />
+                    )}
                 </div>
                 <div className="user_info">
                     {name}{" "}

@@ -39,16 +39,16 @@ export const ReplyEditDelete = ({ id }) => {
         <i className="fa-solid fa-ellipsis" />
         {showMenu && (
           <ul className="delete-edit-buttons" ref={ulRef}>
-            <li>
+            <div>
               <ReplyDelete ReplyId={id} />
-            </li>
-            <li>
+            </div>
+            <div>
               <OpenModalButton
                 buttonText="Edit"
                 onItemClick={closeMenu}
                 modalComponent={<ReplyEdit replyId={id} />}
               />
-            </li>
+            </div>
           </ul>
         )}
       </button>

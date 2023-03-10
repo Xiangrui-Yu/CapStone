@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { getAllUnfollowed } from '../../store/follows'
 import { AddFollow } from './AddFollow'
 import "./follow.css"
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 
 
@@ -28,7 +29,8 @@ export const GetAllUnfollowed = () => {
                         <Link to={`/users/${user.id}`} className='follow-users-link'>
 
                             <div className="user_avatar">
-                                <img src={user.avatar} alt="User avatar"></img>
+                                {user.avatar ? (<img src={user.avatar} alt="User avatar"></img>) : (<img src={DefaultAvatar} alt="Default avatar" />
+                                )}
                             </div>
                             <div className="follow-user_info">
                                 {user.name}{" "}

@@ -35,9 +35,14 @@ img{
 
 }
 
-.delete-edit-button{
-    margin-left:auto;
-    margin-right:10px
+.delete-edit-button {
+    margin-left: auto;
+    margin-right: 10px
+  }
+
+.delete-edit-buttons > div {
+  margin: 5px 0;
+
 }
 
 .delete-edit-button:hover{

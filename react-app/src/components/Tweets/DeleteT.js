@@ -19,7 +19,7 @@ export const DeleteT = ({tweetId}) =>{
             }}
         
         >
-        delete
+        Delete
         </button>
     )
 }

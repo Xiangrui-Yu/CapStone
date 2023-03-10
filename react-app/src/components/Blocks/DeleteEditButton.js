@@ -40,16 +40,16 @@ export const DeleteEditButton = ({ id }) => {
         <i className="fa-solid fa-ellipsis" />
         {showMenu && (
           <ul className="delete-edit-buttons" ref={ulRef}>
-            <li>
+            <div>
               <DeleteT tweetId={id} />
-            </li>
-            <li>
+            </div>
+            <div>
               <OpenModalButton
                 buttonText="Edit"
                 onItemClick={closeMenu}
                 modalComponent={<EditT tweetId={id} />}
               />
-            </li>
+            </div>
           </ul>
         )}
       </button>

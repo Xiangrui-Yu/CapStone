@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { addReply } from '../../store/replies'
 import './PostReply.css'
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 export const PostRelyNoButton = ({ tweetId }) => {
     const dispatch = useDispatch();
@@ -34,9 +35,11 @@ export const PostRelyNoButton = ({ tweetId }) => {
             onSubmit={handleSubmit}
         >
             <div className='replyBody-No-Button-content'>
-                {currentUser &&
-                    <img src={currentUser.avatar}></img>}
-
+                {currentUser && currentUser.avatar ? (
+                    <img src={currentUser.avatar}></img>
+                ) : (
+                    <img src={DefaultAvatar} alt="Default avatar" />
+                )}
                 <label>
 
                     <input

@@ -5,6 +5,7 @@ import { getAllFollowed } from '../../store/follows'
 import "./follow.css"
 import { UndoFollow } from './UndoFollow'
 import TwitterPic from '../../Twitter.png'
+import DefaultAvatar from '../../DefaultAvatar.png'
 
 
 export const GetAllFollowed = () => {
@@ -69,7 +70,8 @@ export const GetAllFollowed = () => {
                             <Link to={`/users/${user.id}`} className='follow-users-link'>
 
                                 <div className="user_avatar">
-                                    <img src={user.avatar} alt="User avatar"></img>
+                                    {user.avatar ? (<img src={user.avatar} alt="User avatar"></img>) : (<img src={DefaultAvatar} alt="Default avatar" />
+                                    )}
                                 </div>
                                 <div className="follow-user_info">
                                     {user.name}{" "}

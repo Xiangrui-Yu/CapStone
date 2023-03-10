@@ -19,7 +19,7 @@ export const ReplyDelete = ({ ReplyId }) => {
                 })
             }}
         >
-            delete
+            Delete
         </button>
     )
 

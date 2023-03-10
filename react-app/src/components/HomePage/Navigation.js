@@ -11,7 +11,7 @@ function Navigation({ isLoaded }) {
 	return (
 		<div className='Navigation-holder'>
 			<div>
-				<i className="fa-brands fa-twitter"></i>
+			<i className="fa-solid fa-kiwi-bird"></i>
 
 			</div>
 

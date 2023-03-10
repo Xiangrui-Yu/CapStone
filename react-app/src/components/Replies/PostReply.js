@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { addReply } from '../../store/replies'
 import './PostReply.css'
+import DefaultAvatar from '../../DefaultAvatar.png'
 
-export const PostRely = ({tweetId}) => {
+export const PostRely = ({ tweetId }) => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [body, setBody] = useState('')
     const [errors, setErrors] = useState([])
-    console.log(tweetId,'this is tweetId')
+    console.log(tweetId, 'this is tweetId')
 
 
     const currentUser = useSelector(state => state.session.user)
@@ -33,8 +34,11 @@ export const PostRely = ({tweetId}) => {
         <form className='replyBody'
             onSubmit={handleSubmit}
         >
-            {currentUser &&
-                <img src={currentUser.avatar}></img>}
+            {currentUser && currentUser.avatar ? (
+                <img src={currentUser.avatar}></img>
+            ) : (
+                <img src={DefaultAvatar} alt="Default avatar" />
+            )}
 
             <label>
 

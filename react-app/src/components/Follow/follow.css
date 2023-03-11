@@ -13,6 +13,7 @@
   
   .follow-users-link {
     align-items: center;
+    color: black;
     display: flex;
     padding: 8px;
     text-decoration: none;
@@ -20,7 +21,7 @@
   }
   
   .follow-users-link:hover {
-    background-color: #80c2ee;
+    color: #80c2ee;
   }
   
   .user_avatar {

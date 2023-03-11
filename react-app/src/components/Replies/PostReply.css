@@ -56,3 +56,9 @@
 .reply-button button:hover {
     background-color: #c5e1f4
 }
+
+
+.reply-like_part {
+    margin-left: auto;
+    margin-right:60px
+  }

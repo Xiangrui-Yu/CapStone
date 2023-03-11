@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { retweetObj } from '../../store/retweet'
 import { useHistory } from 'react-router-dom';
 import { postNewT } from '../../store/tweets';
+import { useModal } from "../../context/Modal";
+
 import "./retweet.css"
 
 
 export const HandleRetweet = ({ object_type, object_id }) => {
     const dispatch = useDispatch()
+    const { closeModal } = useModal();
     // const history = useHistory()
     const [body, setBody] = useState('')
 
@@ -39,6 +42,7 @@ export const HandleRetweet = ({ object_type, object_id }) => {
         const createRetweet = await dispatch(retweetObj(object_type, object_id, payload))
         await dispatch(postNewT(payload))
         setBody('')
+        closeModal()
         // history.push('/')
 
     }
@@ -57,6 +61,13 @@ export const HandleRetweet = ({ object_type, object_id }) => {
                     {originalContent}
                 </div>
                 {/* <button type="submit"><i className="fa-solid fa-retweet"></i></button> */}
+                <button
+                className='post-retweet'
+                type='submit'
+            >
+                Retweet
+            </button>
+
             </form>
         </div>
     )

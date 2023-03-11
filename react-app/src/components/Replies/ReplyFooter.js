@@ -1,4 +1,5 @@
 import { HandleLikes } from "../Likes/HandleLikes"
+import './PostReply.css'
 export const ReplyFooter = ({ like, retweet,id }) => {
     return (
         <span className='footer_holder'>
@@ -17,7 +18,7 @@ export const ReplyFooter = ({ like, retweet,id }) => {
                 )}
             </div> */}
 
-            <div className='like_part'>
+            <div className='reply-like_part'>
                 {like && like[0] ? (
                     <>  
                         <HandleLikes object_type={'replies'} object_id={id} />

@@ -4,6 +4,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { addReply } from '../../store/replies'
 import './PostReply.css'
 import DefaultAvatar from '../../DefaultAvatar.png'
+import { useModal } from "../../context/Modal";
 
 export const PostRelyNoButton = ({ tweetId }) => {
     const dispatch = useDispatch();
@@ -11,6 +12,8 @@ export const PostRelyNoButton = ({ tweetId }) => {
     console.log(tweetId, " this is the tweetId on the post reply")
     const [body, setBody] = useState('')
     const [errors, setErrors] = useState([])
+    const { closeModal } = useModal();
+
 
 
     const currentUser = useSelector(state => state.session.user)
@@ -27,6 +30,7 @@ export const PostRelyNoButton = ({ tweetId }) => {
 
         if (addAReply) {
             setBody('')
+            closeModal()
             history.push(`/tweets/${tweetId}`)
         }
     }

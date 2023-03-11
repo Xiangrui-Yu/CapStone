@@ -23,7 +23,7 @@ function Navigation({ isLoaded }) {
 				<i className="fa-regular fa-user"></i> <Profile />
 			</div>
 			<div>
-				<i className="fa-sharp fa-regular fa-envelope"></i> Message
+				{/* <i className="fa-sharp fa-regular fa-envelope"></i> Message */}
 			</div>
 
 			{isLoaded && (

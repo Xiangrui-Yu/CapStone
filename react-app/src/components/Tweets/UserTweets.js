@@ -6,7 +6,6 @@ import { loadAllTweets } from '../../store/tweets'
 import { UserBlock } from '../Blocks/UserBlock'
 import { FooterBlock } from '../Blocks/FooterBlock'
 import { getUserTweets } from '../../store/tweets'
-import './tweets.css'
 
 export const UserTweets = ({ userId }) => {
     const dispatch = useDispatch()

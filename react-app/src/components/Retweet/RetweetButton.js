@@ -8,6 +8,7 @@ import "./retweet.css"
 export const RetweetButton = ({ object_type, object_id }) =>{
     const dispatch = useDispatch();
     const [showMenu, setShowMenu] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const ulRef = useRef()
   
     const openMenu = () => {
@@ -37,21 +38,17 @@ export const RetweetButton = ({ object_type, object_id }) =>{
             <i className="fa-solid fa-retweet" />
             {showMenu && (
               <ul  ref={ulRef}>
-                <li className="retweet-button">
+                <div className="retweet-button">
                   <OpenModalButton
                     buttonText="Retweet"
                     onItemClick={closeMenu}
                     modalComponent={<HandleRetweet object_type ={object_type} object_id={object_id} />}
                   />
-                </li>
+                </div>
               </ul>
             )}
           </button>
         </div>
       );
-    
-
-
-
 
 }

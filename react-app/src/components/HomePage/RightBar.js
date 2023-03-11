@@ -9,7 +9,7 @@ export const RightBar = () => {
     
     return (
         <div className="RightBar-holder">
-            what's Happening
+            
             <div className="unfollowed - list">
                 <GetAllUnfollowed />
             </div>

@@ -15,6 +15,11 @@
 
 }
 
+.retweet-button-container button i:hover {
+  color: #1da1f2;
+
+}
+
 
 .retweet-button {
     background-color: #fff;

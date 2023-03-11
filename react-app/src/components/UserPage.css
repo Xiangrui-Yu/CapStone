@@ -31,6 +31,7 @@
     min-width: fit-content;
     height: 30px;
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .userpage-img {

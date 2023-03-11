@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import './likes.css'
 import { handleLikes } from "../../store/likes";
 
 export const HandleLikes = ({ object_type, object_id }) => {

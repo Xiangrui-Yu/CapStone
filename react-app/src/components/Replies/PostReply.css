@@ -13,15 +13,18 @@
 
 .reply-post{
     background-color: #5b98be;
-    border:none;
+    border: none;
     color: white;
     font-weight: 800;
     border-radius: 30px;
-    width: 60px;
-    height:30px;
-    margin-top:20px;
-    margin-left:auto
+    min-width: fit-content;
+    height: 30px;
+    margin-top: 20px;
+    cursor: pointer;
 }
+.reply-post:hover{
+    background-color: #0c8bf4;}
+
 
 .replyBody-No-Button{
     display: flex;
@@ -50,11 +53,12 @@
 
 
 .reply-button button {
-    border:none
+    border:none;
+    cursor: pointer;
 }
 
 .reply-button button:hover {
-    background-color: #c5e1f4
+    color: #1da1f2;
 }
 
 

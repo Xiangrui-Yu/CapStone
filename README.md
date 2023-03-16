@@ -2,7 +2,7 @@
 ## URL
 https://capstone-zbrk.onrender.com
 ## Introduction
-A Twitter clone with functionality of tweeting, reply, retweet, reaction and add followers. 
+A full-stack Twitter clone flask-react project with functionality of tweeting, reply, retweet, reaction and add followers. 
 
 ## Technologies Used
 The project is built using a variety of technologies, including:
@@ -18,7 +18,7 @@ The project is built using a variety of technologies, including:
 * SQLite3
 * Flask
 ## How to Get Started
-To get started with the project, follow these steps:
+To get started with the project, follow these steps:  
 
 * Clone this repository to your local machine.
 * Navigate to the react-app folder and run npm install to install the required dependencies.
